@@ -1,0 +1,11 @@
+package com.example.proyectomoviles1
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class ClientePrincipal : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_cliente_principal)
+    }
+}

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ProyectoMoviles1</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="usuario">Usuario</string>
+    <string name="ingresar">ingresar</string>
+    <string name="agregar_cliente">Agregar Cliente</string>
+    <string name="asignar_prestamo">Asignar Prestamo</string>
+    <string name="ver_mis_prestamos">Ver mis prestamos</string>
+    <string name="gestionar_mis_ahorros">Gestionar mis ahorros</string>
+    <string name="calcula_cuota">Calcula cuota</string>
+    <string name="informacion_personal">Informacion Personal</string>
+    <string name="agregarClienteBtn">Agregar Cliente</string>
+    <string name="direccionClienteTxt">Direccion</string>
+    <string name="salarioClienteTxt">Salario</string>
+    <string name="addClienteTxtView">Agregar Cliente</string>
+    <string name="telefonoClienteTxt">Teléfono</string>
+    <string name="nombreClienteTxt">Nombre</string>
+    <string name="cedulaClienteTxt">Cedula</string>
+    <string name="estado_civil">Estado Civil</string>
+    <string name="fechaNacimientoClienteTxt">Fecha Nacimiento</string>
+    <string name="salarioView">Salario: </string>
+    <string name="creditoView">Credito: </string>
+    <string name="cedulaView">Cedula: </string>
+    <string name="nombre_cliente_view">Nombre: </string>
+    <string name="consulta_cliente">Número cédula cliente</string>
+    <string name="telefonoView">"Telefono: "</string>
+    <string name="periodoView">"Periodo: "</string>
+    <string name="tipoView">"Tipo: "</string>
+    <string name="info_prestamo">Información del prestamo</string>
+</resources>

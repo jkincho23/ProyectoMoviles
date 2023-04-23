@@ -12,28 +12,34 @@
         android:theme="@style/Theme.ProyectoMoviles1"
         tools:targetApi="31">
         <activity
+            android:name=".ver_prestamos"
+            android:exported="false"
+            android:label="@string/title_activity_ver_prestamos"
+            android:theme="@style/Theme.ProyectoMoviles1.NoActionBar" />
+        <activity
             android:name=".agregarPrestamo"
             android:exported="false"
             android:label="Agregar Prestamo"
-            android:parentActivityName= ".AdminPrincipal"/>
+            android:parentActivityName=".AdminPrincipal" />
         <activity
             android:name=".agregarCliente"
             android:exported="false"
             android:label="Agregar Cliente"
-            android:parentActivityName= ".AdminPrincipal"/>
+            android:parentActivityName=".AdminPrincipal" />
         <activity
             android:name=".ClientePrincipal"
             android:exported="false"
-            android:parentActivityName= ".AdminPrincipal"/>
+            android:parentActivityName=".AdminPrincipal" />
         <activity
             android:name=".AdminPrincipal"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

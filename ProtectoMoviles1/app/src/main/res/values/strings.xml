@@ -29,5 +29,5 @@
     <string name="info_prestamo">Información del prestamo</string>
     <string name="nombreUsuarioTxt">Nombre usuario</string>
     <string name="contrasenaClienteTxt">Contraseña</string>
-    <string name="title_activity_ver_prestamos">ver_prestamos</string>
+    <string name="pagar">Pagar</string>
 </resources>

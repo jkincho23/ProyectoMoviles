@@ -11,39 +11,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112"
+        app:layout_constraintBottom_toTopOf="@id/payButton">
 
         <TextView
             android:id="@+id/customerTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/amountTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/periodTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/typeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pagar"
+        app:layout_constraintTop_toBottomOf="@id/loanDetailsLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package modelos
 
+import java.io.Serializable
 import kotlin.math.pow
 
 class Loan(
@@ -7,7 +8,7 @@ class Loan(
     private var amount: Double,
     private var period: Int,
     private var typeLoan: String
-) {
+): Serializable {
 
     private var interestRate: Double = 0.0
     private var totalAmount: Double = 0.0

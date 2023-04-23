@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initComponents()
-/*
+
         val cliente1: Client = Client("andres","andres","Cliente",
             "Andres Martinez Araya", 1500000.0, "632548785", "28/05/1997",
             "Soltero", "Barreal de Heredia 100 mts pul veranera");
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         insertarCliente(cliente1);
         insertarCliente(cliente2);
-*/
+
         ingresarBtn.setOnClickListener {login()}
     }
 

@@ -7,94 +7,46 @@
     tools:context=".agregarCliente">
 
     <EditText
-        android:id="@+id/telefonoClienteTxt3"
-        android:layout_width="379dp"
-        android:layout_height="42dp"
+        android:id="@+id/contrasenaClienteTxt"
+        android:layout_width="182dp"
+        android:layout_height="47dp"
         android:ems="10"
-        android:hint="@string/fechaNacimientoClienteTxt"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621" />
-
-    <EditText
-        android:id="@+id/estadoCivilTxt"
-        android:layout_width="379dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:hint="@string/estado_civil"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
-
-    <EditText
-        android:id="@+id/cedulaClienteTxt"
-        android:layout_width="379dp"
-        android:layout_height="42dp"
-        android:ems="10"
+        android:hint="@string/contrasenaClienteTxt"
         android:inputType="textPersonName"
-        android:hint="@string/cedulaClienteTxt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.935"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.267" />
+        app:layout_constraintVertical_bias="0.173" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="182dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:hint="@string/nombreUsuarioTxt"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173" />
 
     <EditText
         android:id="@+id/nombreTxt"
         android:layout_width="379dp"
         android:layout_height="42dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/nombreClienteTxt"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.174" />
-
-    <EditText
-        android:id="@+id/telefonoClienteTxt"
-        android:layout_width="379dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="@string/telefonoClienteTxt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
-
-    <TextView
-        android:id="@+id/clienteTxtView"
-        android:layout_width="151dp"
-        android:layout_height="35dp"
-        android:text="@string/addClienteTxtView"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
-
-    <EditText
-        android:id="@+id/salarioClienteTxt"
-        android:layout_width="379dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="@string/salarioClienteTxt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <EditText
         android:id="@+id/direccionClienteTxt"
@@ -106,10 +58,92 @@
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
+        app:layout_constraintVertical_bias="0.848" />
+
+    <EditText
+        android:id="@+id/fechaNacimientoTxt"
+        android:layout_width="379dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/fechaNacimientoClienteTxt"
+        android:inputType="date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.708" />
+
+    <EditText
+        android:id="@+id/salarioClienteTxt"
+        android:layout_width="379dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/salarioClienteTxt"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <EditText
+        android:id="@+id/cedulaClienteTxt"
+        android:layout_width="379dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/cedulaClienteTxt"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.352" />
+
+    <EditText
+        android:id="@+id/telefonoClienteTxt"
+        android:layout_width="379dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/telefonoClienteTxt"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.532" />
+
+    <EditText
+        android:id="@+id/estadoCivilTxt"
+        android:layout_width="379dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/estado_civil"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.621" />
+
+    <TextView
+        android:id="@+id/clienteTxtView"
+        android:layout_width="194dp"
+        android:layout_height="36dp"
+        android:text="@string/addClienteTxtView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.008" />
 
     <Button
         android:id="@+id/insertarClienteBtn"
@@ -118,8 +152,20 @@
         android:text="@string/agregarClienteBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.976" />
+
+    <Spinner
+        android:id="@+id/rolSpinner"
+        android:layout_width="183dp"
+        android:layout_height="47dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.085" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

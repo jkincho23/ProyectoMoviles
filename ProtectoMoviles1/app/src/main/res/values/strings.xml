@@ -27,4 +27,6 @@
     <string name="periodoView">"Periodo: "</string>
     <string name="tipoView">"Tipo: "</string>
     <string name="info_prestamo">Información del prestamo</string>
+    <string name="nombreUsuarioTxt">Nombre usuario</string>
+    <string name="contrasenaClienteTxt">Contraseña</string>
 </resources>

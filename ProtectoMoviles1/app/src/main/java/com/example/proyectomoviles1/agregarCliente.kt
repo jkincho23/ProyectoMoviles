@@ -119,7 +119,17 @@ class agregarCliente : AppCompatActivity() {
 
             db.insert("usuarios", null, registro)
             db.close()
-            Toast.makeText(this, "Datos guardados!", Toast.LENGTH_SHORT).show()
+
+            nombreUsuario.setText("")
+            contrasena.setText("")
+            cedula.setText("")
+            nombre.setText("")
+            salario.setText("")
+            telefono.setText("")
+            fechaNacimiento.setText("")
+            estadoCivil.setText("")
+            direccion.setText("")
+            Toast.makeText(this, "!Usuario ingresado con éxito!", Toast.LENGTH_SHORT).show()
         }
     }
 }

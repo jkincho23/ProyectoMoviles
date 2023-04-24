@@ -4,7 +4,7 @@ import java.io.Serializable
 import kotlin.math.pow
 
 class Loan(
-    private val customerUsername: String,
+    private val userId: String,
     private var amount: Double,
     private var period: Int,
     private var typeLoan: String
@@ -16,7 +16,7 @@ class Loan(
         // Aquí podrías realizar alguna validación o cálculo inicial
         assignLoan()
         calculateTotalAmount()
-        println("Se ha creado un objeto Loan con los siguientes datos: Cliente: $customerUsername, Monto: $amount, Periodo: $period años, Tasa de interés: $interestRate%, Total a pagar: $totalAmount, typeLoan=$typeLoan")
+        println("Se ha creado un objeto Loan con los siguientes datos: Cliente: $userId, Monto: $amount, Periodo: $period años, Tasa de interés: $interestRate%, Total a pagar: $totalAmount, typeLoan=$typeLoan")
     }
 
     fun setAmount(amount: Double) {
@@ -38,7 +38,7 @@ class Loan(
     }
 
     fun getCustomerUsername(): String {
-        return customerUsername
+        return userId
     }
 
     fun getAmount(): Double {
@@ -62,7 +62,7 @@ class Loan(
     }
 
     override fun toString(): String {
-        return "Loan(customer=${customerUsername}, amount=$amount, period=$period, interestRate=$interestRate, totalAmount=$totalAmount), typeLoan=$typeLoan)"
+        return "Loan(customer=${userId}, amount=$amount, period=$period, interestRate=$interestRate, totalAmount=$totalAmount), typeLoan=$typeLoan)"
     }
 
     private fun calculateTotalAmount() {

@@ -17,10 +17,10 @@ class DataBase(
 
 
     override fun onCreate(dataBase: SQLiteDatabase?) {
-        dataBase?.execSQL("create table usuarios(userName String, password String, role String, id String, " +
+        dataBase?.execSQL("create table usuarios(userName String, password String, role String, id String primary key, " +
                 "name String, salary Double, phone String, birtDate String, maritalStatus String, address String)")
 
-        dataBase?.execSQL("create table prestamos(credit real, periodo real, tipoCredito String)")
+        dataBase?.execSQL("create table prestamos(credit real, periodo real, tipoCredito String, idUser String)")
 
     }
 

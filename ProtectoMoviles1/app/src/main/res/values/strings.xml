@@ -30,4 +30,11 @@
     <string name="nombreUsuarioTxt">Nombre usuario</string>
     <string name="contrasenaClienteTxt">Contraseña</string>
     <string name="pagar">Pagar</string>
+    <string name="mensualidadView">Mensualidad: </string>
+    <string name="periodoFinalView">Periodo</string>
+    <string name="info_cuota">Detalles y montos</string>
+    <string name="procesar_btn">Procesar</string>
+    <string name="tipoFinalView">Tipo</string>
+    <string name="interesView">Interés</string>
+
 </resources>

@@ -104,7 +104,8 @@ class agregarPrestamo : AppCompatActivity() {
                 cedulaView.text.toString(),
                 credito.text.toString().toDouble(),
                 anios,
-                tipo.selectedItem.toString()
+                tipo.selectedItem.toString(),
+                0
             )
 
             mensualidad.setText(loan.calculateMonthlyPayment().toInt().toString())
@@ -138,10 +139,11 @@ class agregarPrestamo : AppCompatActivity() {
             val admin = DataBase(this, "GestionPrestamos", null, 1)
             val db = admin.writableDatabase
             val registro = ContentValues()
-            registro.put("credit", credito.text.toString())
-            registro.put("periodo", infoPeriodo.text.toString())
+            registro.put("credit", credito.text.toString().toDouble())
+            registro.put("periodo", anios)
             registro.put("tipoCredito", infoTipo.text.toString())
             registro.put("idUser", cedulaView.text.toString())
+            registro.put("cantPagos",0)
 
             db.insert("prestamos", null, registro)
             db.close()

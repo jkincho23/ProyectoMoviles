@@ -1,6 +1,8 @@
 package com.example.proyectomoviles1
 
+import android.content.ContentValues
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,40 +11,30 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import data.DataBase
 import modelos.Loan
 
 class ver_prestamos : AppCompatActivity() {
     private val prestamosList = mutableListOf<Loan>()
     private lateinit var listView: ListView
+    lateinit var id_user : String
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_prestamos)
 
-        // Inicializa la lista de préstamos
-        prestamosList.add(Loan("johndoe", 500.0, 12, "personal"))
-        prestamosList.add(Loan("janedoe", 1000.0, 24, "hipotecario"))
-        prestamosList.add(Loan("johndoe", 750.0, 6, "automotriz"))
-        prestamosList.add(Loan("johndoe", 500.0, 12, "personal"))
-        prestamosList.add(Loan("janedoe", 1000.0, 24, "hipotecario"))
-        prestamosList.add(Loan("johndoe", 750.0, 6, "automotriz"))
-        prestamosList.add(Loan("johndoe", 500.0, 12, "personal"))
-        prestamosList.add(Loan("janedoe", 1000.0, 24, "hipotecario"))
-        prestamosList.add(Loan("johndoe", 750.0, 6, "automotriz"))
-        prestamosList.add(Loan("johndoe", 500.0, 12, "personal"))
-        prestamosList.add(Loan("janedoe", 1000.0, 24, "hipotecario"))
-        prestamosList.add(Loan("johndoe", 750.0, 6, "automotriz"))
-        prestamosList.add(Loan("johndoe", 500.0, 12, "personal"))
-        prestamosList.add(Loan("janedoe", 1000.0, 24, "hipotecario"))
-        prestamosList.add(Loan("johndoe", 750.0, 6, "automotriz"))
+        id_user = intent.getIntExtra("USER_ID",0).toString()
+        println("UserID :: $id_user")
+        cargarPrestamos()
+        initComponent()
+        clicklers()
+1
+    }
 
-        // Crea un adaptador para el ListView
-//        val adapter = ArrayAdapter(
-//            this,
-//            android.R.layout.simple_list_item_1,
-//            prestamosList.map { it.toString() }
-//        )
-
-        val adapter = object : ArrayAdapter<Loan>(this, R.layout.item_prestamo, prestamosList) {
+    fun initComponent(){
+        var adapter = object : ArrayAdapter<Loan>(this, R.layout.item_prestamo, prestamosList) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_prestamo, parent, false)
                 val prestamo = prestamosList[position]
@@ -52,16 +44,47 @@ class ver_prestamos : AppCompatActivity() {
                 return view
             }
         }
-
-        // Asigna el adaptador al ListView
         listView = findViewById(R.id.listView)
         listView.adapter = adapter
+    }
 
+    fun clicklers(){
         listView.setOnItemClickListener { parent, view, position, id ->
             val loan = prestamosList[position]
             val intent = Intent(this, LoanDetails::class.java)
             intent.putExtra("loan", loan)
             startActivity(intent)
         }
+
+    }
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun cargarPrestamos(){
+
+        val admin = DataBase(this,"GestionPrestamos",null,1)
+        val db = admin.writableDatabase
+
+        val fila = db.rawQuery("select credit, periodo, tipoCredito, cantPagos from prestamos where idUser = '$id_user'", null)
+
+        if(fila.moveToFirst()){
+            println("Chucha E")
+            do {
+                val credit = fila.getDouble(0) // Obtener el valor de la columna "credit" como entero
+                val periodo = fila.getInt(1) // Obtener el valor de la columna "periodo" como cadena de texto
+                val tipoCredito = fila.getString(2) // Obtener el valor de la columna "tipoCredito" como cadena de texto
+                val cantPagos = fila.getString(2).toInt()
+
+                val loan = Loan(id_user, credit, periodo, tipoCredito,cantPagos)
+
+                println(loan)
+                prestamosList.add(loan)
+            } while (fila.moveToNext())
+
+        }else {
+            Toast.makeText(this, "No tiene Prestamos", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
     }
 }

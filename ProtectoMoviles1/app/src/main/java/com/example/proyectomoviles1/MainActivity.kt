@@ -16,31 +16,25 @@ class MainActivity : AppCompatActivity() {
     private lateinit var usuarioTxt: EditText
     private lateinit var contrasenaTxt: EditText
     private lateinit var ingresarBtn: Button
+    private lateinit var cargarDatosBtn: Button
 
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         initComponents()
 
-        val cliente1: Client = Client("andres","andres","Cliente",
-            "Andres Martinez Araya", 1500000.0, "632548785", "28/05/1997",
-            "Soltero", "Barreal de Heredia 100 mts pul veranera");
-        val cliente2: Client = Client("marcos","marcos","Administrador",
-            "Marcos Lopez Araya", 1800000.0, "632548785", "28/10/1997",
-            "Soltero", "Barreal de Heredia 100 mts pul veranera");
-
-        insertarCliente(cliente1);
-        insertarCliente(cliente2);
-
         ingresarBtn.setOnClickListener {login()}
+        cargarDatosBtn.setOnClickListener { cargarDatos() }
     }
 
     fun initComponents() {
         usuarioTxt = findViewById(R.id.usuarioTxt)
         contrasenaTxt = findViewById(R.id.contrasenaTxt)
         ingresarBtn = findViewById(R.id.ingresarBtn)
+        cargarDatosBtn = findViewById(R.id.cargarDatosBtn)
     }
 
     fun compruebaCampos(): Boolean {
@@ -60,8 +54,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun openClientePrincipal(){
+    fun openClientePrincipal(username: Int) {
         val intent = Intent(this, ClientePrincipal::class.java)
+        intent.putExtra("USER_ID", username)
         startActivity(intent)
     }
 
@@ -81,11 +76,12 @@ class MainActivity : AppCompatActivity() {
         if(!client.getUsername().isEmpty() && !client.getPassword().isEmpty() &&
             !client.getRole().isEmpty() && !client.getName().isEmpty() && !client.getSalary().toString().isEmpty()
             && !client.getPhone().isEmpty() && !client.getAddress().isEmpty() && !client.getMaritalStatus().isEmpty()
-            && !client.getAddress().isEmpty()
+            && !client.getAddress().isEmpty() && !client.getCedula().toString().isEmpty()
         ){
             val registro = ContentValues()
             registro.put("userName", client.getUsername())
             registro.put("password",client.getPassword())
+            registro.put("id",client.getCedula())
             registro.put("role",client.getRole())
             registro.put("name",client.getName())
             registro.put("salary",client.getSalary())
@@ -107,16 +103,30 @@ class MainActivity : AppCompatActivity() {
         val user = usuarioTxt.text.toString()
         val password = contrasenaTxt.text.toString()
 
-        val fila = db.rawQuery("select userName, password, role from usuarios where userName = '$user' and password = '$password'", null)
+        val fila = db.rawQuery("select userName,id, password, role from usuarios where userName = '$user' and password = '$password'", null)
 
         if(fila.moveToFirst()){
-            if(fila.getString(2) == "Cliente"){
-                openClientePrincipal()
+            if(fila.getString(3) == "Cliente"){
+                println(fila.getString(1).toInt())
+                openClientePrincipal(fila.getString(1).toInt())
             }else{
                 openAdminPrincipal()
             }
         }else {
             Toast.makeText(this, "Usuario no encontrados", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun cargarDatos() {
+        val cliente1: Client = Client("andres","andres","Cliente",
+            "Andres Martinez Araya",208270803, 1500000.0, "632548785", "28/05/1997",
+            "Soltero", "Barreal de Heredia 100 mts pul veranera");
+        val cliente2: Client = Client("marcos","marcos","Administrador",
+            "Marcos Lopez Araya",123456789, 1800000.0, "632548785", "28/10/1997",
+            "Soltero", "Barreal de Heredia 100 mts pul veranera");
+
+        insertarCliente(cliente1);
+        insertarCliente(cliente2);
     }
 }

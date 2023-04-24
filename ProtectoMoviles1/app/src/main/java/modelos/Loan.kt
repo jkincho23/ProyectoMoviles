@@ -7,7 +7,8 @@ class Loan(
     private val userId: String,
     private var amount: Double,
     private var period: Int,
-    private var typeLoan: String
+    private var typeLoan: String,
+    private var payments: Int
 ): Serializable {
 
     private var interestRate: Double = 0.0
@@ -61,6 +62,14 @@ class Loan(
         return typeLoan
     }
 
+    fun setPayment(payment: Int) {
+        this.payments = payment
+    }
+
+    fun getPayment(): Int {
+        return payments
+    }
+
     override fun toString(): String {
         return "Loan(customer=${userId}, amount=$amount, period=$period, interestRate=$interestRate, totalAmount=$totalAmount), typeLoan=$typeLoan)"
     }
@@ -72,6 +81,13 @@ class Loan(
     fun calculateMonthlyPayment(): Double {
         val totalPeriods = period * 12
         return totalAmount / totalPeriods
+    }
+    fun remainingPayments() : Int{
+        return period - payments
+    }
+
+    fun remainingAmount(): Double{
+        return totalAmount - (calculateMonthlyPayment() * remainingPayments())
     }
 
     fun assignLoan() {

@@ -3,6 +3,7 @@ package modelos
 class Client(
     username: String, password: String, role: String,
     private var name: String,
+    private var cedula: Int,
     private var salary: Double,
     private var phone: String,
     private var birthDate: String,
@@ -12,7 +13,7 @@ class Client(
 
     init {
         println("Se ha creado un objeto Cliente con los siguientes datos: " +
-                "$username, $password, $role, $name, $salary, $phone, $birthDate, $maritalStatus, $address")
+                "$username, $password, $role, $name,$cedula, $salary, $phone, $birthDate, $maritalStatus, $address")
     }
 
     // Métodos get y set para la propiedad name
@@ -22,6 +23,10 @@ class Client(
 
     fun setName(newName: String) {
         name = newName
+    }
+
+    fun getCedula(): Int {
+        return cedula
     }
 
     // Métodos get y set para la propiedad salary
@@ -71,7 +76,7 @@ class Client(
 
     // Método toString para mostrar información del objeto Cliente
     override fun toString(): String {
-        return "Client(name='$name', salary=$salary, phone='$phone', birthDate='$birthDate', maritalStatus='$maritalStatus', address='$address', ${super.toString()})"
+        return "Client(name='$name', cedula='$cedula' salary=$salary, phone='$phone', birthDate='$birthDate', maritalStatus='$maritalStatus', address='$address', ${super.toString()})"
     }
 
     fun maxLoanAmount(): Double {

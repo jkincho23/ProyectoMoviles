@@ -83,11 +83,11 @@ class Loan(
         return totalAmount / totalPeriods
     }
     fun remainingPayments() : Int{
-        return period - payments
+        return (period*12) - payments
     }
 
     fun remainingAmount(): Double{
-        return totalAmount - (calculateMonthlyPayment() * remainingPayments())
+        return (calculateMonthlyPayment() * remainingPayments())
     }
 
     fun assignLoan() {

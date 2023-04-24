@@ -135,6 +135,7 @@ class agregarPrestamo : AppCompatActivity() {
             } else {
                 anios = 10
             }
+            val pagos = 0;
 
             val admin = DataBase(this, "GestionPrestamos", null, 1)
             val db = admin.writableDatabase
@@ -143,9 +144,12 @@ class agregarPrestamo : AppCompatActivity() {
             registro.put("periodo", anios)
             registro.put("tipoCredito", infoTipo.text.toString())
             registro.put("idUser", cedulaView.text.toString())
-            registro.put("cantPagos",0)
+            registro.put("cantPagos",pagos)
+
+            println("arroz :  $registro")
 
             db.insert("prestamos", null, registro)
+
             db.close()
 
             Toast.makeText(this, "!Prestamo agregado correctamente!", Toast.LENGTH_SHORT)

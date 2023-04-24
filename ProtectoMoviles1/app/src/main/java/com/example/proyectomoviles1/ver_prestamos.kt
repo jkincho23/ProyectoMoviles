@@ -71,7 +71,7 @@ class ver_prestamos : AppCompatActivity() {
                 val credit = fila.getDouble(0) // Obtener el valor de la columna "credit" como entero
                 val periodo = fila.getInt(1) // Obtener el valor de la columna "periodo" como cadena de texto
                 val tipoCredito = fila.getString(2) // Obtener el valor de la columna "tipoCredito" como cadena de texto
-                val cantPagos = fila.getString(2).toInt()
+                val cantPagos = fila.getString(3).toInt()
 
                 val loan = Loan(id_user, credit, periodo, tipoCredito,cantPagos)
 

@@ -20,10 +20,10 @@ class LoanDetails : AppCompatActivity() {
         val typeTextView: TextView = findViewById(R.id.typeTextView)
 
         customerTextView.text = "Cliente: ${loan.getCustomerUsername()}"
-        amountTextView.text = "Monto: ${loan.getAmount()}"
-        periodTextView.text = "Plazo: ${loan.getPeriod()}"
+        amountTextView.text = "Monto Total: ${loan.getTotalAmount()}"
+        periodTextView.text = "Plazo Total en Meses: ${loan.getPeriod()*12}"
         remainingAmountTextView.text = "Monto: ${loan.remainingAmount()}"
-        remainingPeriodTextView.text = "Plazo: ${loan.remainingPayments()}"
+        remainingPeriodTextView.text = "Plazo Restante  en Meses: ${loan.remainingPayments()}"
         typeTextView.text = "Tipo de préstamo: ${loan.getTypeLoan()}"
 
     }

@@ -37,7 +37,7 @@ class Loan(
         typeLoan = newTypeLoan
     }
 
-    fun getCustomerUsername(): String {
+    fun getUserId(): String {
         return userId
     }
 

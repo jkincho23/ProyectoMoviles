@@ -46,7 +46,7 @@ class ver_prestamos : AppCompatActivity() {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_prestamo, parent, false)
                 val prestamo = prestamosList[position]
-                view.findViewById<TextView>(R.id.nombreUsuario).text = "Usuario: ${prestamo.getCustomerUsername()}"
+                view.findViewById<TextView>(R.id.nombreUsuario).text = "Usuario: ${prestamo.getUserId()}"
                 view.findViewById<TextView>(R.id.montoPrestamo).text = "Monto: ${prestamo.getAmount()}"
                 view.findViewById<TextView>(R.id.tipoPrestamo).text = "Tipo: ${prestamo.getTypeLoan()}"
                 return view

@@ -20,6 +20,7 @@ class ver_prestamos : AppCompatActivity() {
     private val prestamosList = mutableListOf<Loan>()
     private lateinit var listView: ListView
     lateinit var id_user : String
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,17 +64,19 @@ class ver_prestamos : AppCompatActivity() {
         val admin = DataBase(this,"GestionPrestamos",null,1)
         val db = admin.writableDatabase
 
-        val fila = db.rawQuery("select credit, periodo, tipoCredito, cantPagos from prestamos where idUser = '$id_user'", null)
+        val fila = db.rawQuery("select credit, periodo, tipoCredito, cantPagos, id from prestamos where idUser = '$id_user'", null)
 
         if(fila.moveToFirst()){
-            println("Chucha E")
+
             do {
                 val credit = fila.getDouble(0) // Obtener el valor de la columna "credit" como entero
                 val periodo = fila.getInt(1) // Obtener el valor de la columna "periodo" como cadena de texto
                 val tipoCredito = fila.getString(2) // Obtener el valor de la columna "tipoCredito" como cadena de texto
                 val cantPagos = fila.getString(3).toInt()
+                val id = fila.getString(4).toInt()
 
-                val loan = Loan(id_user, credit, periodo, tipoCredito,cantPagos)
+
+                val loan = Loan(id,id_user, credit, periodo, tipoCredito,cantPagos)
 
                 println(loan)
                 prestamosList.add(loan)

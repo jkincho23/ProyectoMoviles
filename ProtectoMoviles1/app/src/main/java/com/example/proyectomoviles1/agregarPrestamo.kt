@@ -12,6 +12,9 @@ import modelos.Loan
 
 class agregarPrestamo : AppCompatActivity() {
 
+    // Variables
+    var siguienteId : Int = 0;
+
     // Información del cliente consultado
     lateinit var numIdConsulta: EditText
     lateinit var nombreView: TextView
@@ -36,6 +39,7 @@ class agregarPrestamo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_prestamo)
+        obtenerId()
         initComponents()
 
         consultarBtn.setOnClickListener { consultarUsuario() }
@@ -82,6 +86,7 @@ class agregarPrestamo : AppCompatActivity() {
         return false
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     @SuppressLint("SuspiciousIndentation")
     fun procesarPrestamo(): Boolean {
         if (compruebaCampos()) {
@@ -100,7 +105,7 @@ class agregarPrestamo : AppCompatActivity() {
                 anios = 10
             }
 
-            val loan = Loan(
+            val loan = Loan(siguienteId+1,
                 cedulaView.text.toString(),
                 credito.text.toString().toDouble(),
                 anios,
@@ -140,6 +145,7 @@ class agregarPrestamo : AppCompatActivity() {
             val admin = DataBase(this, "GestionPrestamos", null, 1)
             val db = admin.writableDatabase
             val registro = ContentValues()
+            registro.put("id",siguienteId+1)
             registro.put("credit", credito.text.toString().toDouble())
             registro.put("periodo", anios)
             registro.put("tipoCredito", infoTipo.text.toString())
@@ -215,5 +221,18 @@ class agregarPrestamo : AppCompatActivity() {
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, tipos)
         tipo.adapter = adapter2
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun obtenerId(){
+        val admin = DataBase(this, "GestionPrestamos", null, 1)
+        val db = admin.writableDatabase
+
+        val filaCountQuery = "SELECT COUNT(*) FROM prestamos"
+        val filaCount = db.rawQuery(filaCountQuery, null)
+
+        filaCount.moveToFirst()
+        siguienteId = filaCount.getInt(0)
+        db.close()
     }
 }

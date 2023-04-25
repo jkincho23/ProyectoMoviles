@@ -10,7 +10,7 @@ fun main() {
 
     val maxLoan = client.maxLoanAmount()
     println(maxLoan)
-    val loan = Loan(client.getUsername(), 1000.0, 5, "Viajes",0)
+    val loan = Loan(23,client.getUsername(), 1000.0, 5, "Viajes",0)
 
     println("---------------------------")
     println("---------------------------")

@@ -116,6 +116,6 @@ class Loan(
     }
 
     fun doPaymenent(){
-        
+        payments++;
     }
 }

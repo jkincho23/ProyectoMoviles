@@ -58,6 +58,15 @@
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/amoutToPayTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <TextView
             android:id="@+id/periodTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -21,6 +21,15 @@
         app:layout_constraintBottom_toTopOf="@id/payButton">
 
         <TextView
+            android:id="@+id/idLoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
             android:id="@+id/customerTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,8 +47,27 @@
             android:textStyle="bold"
             android:gravity="center"/>
 
+
+        <TextView
+            android:id="@+id/remainingAmountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
         <TextView
             android:id="@+id/periodTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/remainingPeriodTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

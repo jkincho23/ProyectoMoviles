@@ -4,10 +4,12 @@ import java.io.Serializable
 import kotlin.math.pow
 
 class Loan(
+    private val id: Int,
     private val userId: String,
     private var amount: Double,
     private var period: Int,
-    private var typeLoan: String
+    private var typeLoan: String,
+    private var payments: Int
 ): Serializable {
 
     private var interestRate: Double = 0.0
@@ -18,6 +20,8 @@ class Loan(
         calculateTotalAmount()
         println("Se ha creado un objeto Loan con los siguientes datos: Cliente: $userId, Monto: $amount, Periodo: $period años, Tasa de interés: $interestRate%, Total a pagar: $totalAmount, typeLoan=$typeLoan")
     }
+
+
 
     fun setAmount(amount: Double) {
         this.amount = amount
@@ -48,7 +52,9 @@ class Loan(
     fun getPeriod(): Int {
         return period
     }
-
+    fun getId(): Int {
+        return id
+    }
     fun getInterestRate(): Double {
         return interestRate
     }
@@ -59,6 +65,14 @@ class Loan(
 
     fun getTypeLoan(): String {
         return typeLoan
+    }
+
+    fun setPayment(payment: Int) {
+        this.payments = payment
+    }
+
+    fun getPayment(): Int {
+        return payments
     }
 
     override fun toString(): String {
@@ -72,6 +86,13 @@ class Loan(
     fun calculateMonthlyPayment(): Double {
         val totalPeriods = period * 12
         return totalAmount / totalPeriods
+    }
+    fun remainingPayments() : Int{
+        return (period*12) - payments
+    }
+
+    fun remainingAmount(): Double{
+        return (calculateMonthlyPayment() * remainingPayments())
     }
 
     fun assignLoan() {
@@ -94,5 +115,7 @@ class Loan(
         }
     }
 
-
+    fun doPaymenent(){
+        
+    }
 }

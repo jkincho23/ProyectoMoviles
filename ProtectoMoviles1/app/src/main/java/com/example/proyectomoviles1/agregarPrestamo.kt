@@ -12,6 +12,9 @@ import modelos.Loan
 
 class agregarPrestamo : AppCompatActivity() {
 
+    // Variables
+    var siguienteId : Int = 0;
+
     // Información del cliente consultado
     lateinit var numIdConsulta: EditText
     lateinit var nombreView: TextView
@@ -38,12 +41,159 @@ class agregarPrestamo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_prestamo)
+        obtenerId()
         initComponents()
 
         consultarBtn.setOnClickListener { consultarUsuario() }
         agregarPrestamoBtn.setOnClickListener { agregarPrestamo() }
         procesarBtn.setOnClickListener { procesarPrestamo() }
 
+    }
+
+    fun compruebaCampos(): Boolean {
+
+        var bandera = true
+        if (nombreView.text.toString().isEmpty() || cedulaView.text.toString().isEmpty()
+            || salarioView.text.toString().isEmpty() || telefonoView.text.toString().isEmpty()
+        ) {
+            numIdConsulta.setError("Ingrese una identificación válida")
+            bandera = false
+        }
+        if (credito.text.toString().isEmpty()) {
+            credito.setError("Debe ingresar un valor")
+            bandera = false
+        }
+        if (!credito.text.toString().isEmpty()) {
+            if (!verificaCredito()) {
+                credito.setError(
+                    "El crédito máximo para este usuario es de: " + salarioView.text.toString()
+                        .toInt() * 0.45
+                )
+                bandera = false
+            }
+        } else {
+            credito.setError("Ingrese un monto válido")
+        }
+        if (bandera) {
+            return true
+        }
+        return false
+    }
+
+    fun verificaCredito(): Boolean {
+        if (credito.text.toString().toInt() <= salarioView.text.toString().toInt() * 0.45) {
+            return true
+
+        }
+        return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    @SuppressLint("SuspiciousIndentation")
+    fun procesarPrestamo(): Boolean {
+        if (compruebaCampos()) {
+            //  infoPeriodo.setText(periodo.selectedItem.toString())
+            cedulaView.text.toString()
+            credito.text.toString()
+            periodo.selectedItem.toString()
+            tipo.selectedItem.toString()
+
+            val anios: Int
+            if (periodo.selectedItem.toString().equals("3 años")) {
+                anios = 3
+            } else if (periodo.selectedItem.toString().equals("5 años")) {
+                anios = 5
+            } else {
+                anios = 10
+            }
+
+            val loan = Loan(siguienteId+1,
+                cedulaView.text.toString(),
+                credito.text.toString().toDouble(),
+                anios,
+                tipo.selectedItem.toString(),
+                0
+            )
+
+            mensualidad.setText(loan.calculateMonthlyPayment().toInt().toString())
+            infoPeriodo.setText("${loan.getPeriod()} años")
+            infoTipo.setText(loan.getTypeLoan())
+            infoInteres.setText((loan.getInterestRate() * 100).toString() + "%")
+            return true
+        }
+        return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun agregarPrestamo() {
+
+        if (mensualidad.text.toString().isEmpty() ||
+            infoPeriodo.text.toString().isEmpty() ||
+            infoTipo.text.toString().isEmpty() ||
+            infoInteres.text.toString().isEmpty()
+        ) {
+            credito.setError("Ingrese un monto antes de proceder")
+        } else {
+            val anios: Int
+            if (periodo.selectedItem.toString().equals("3 años")) {
+                anios = 3
+            } else if (periodo.selectedItem.toString().equals("5 años")) {
+                anios = 5
+            } else {
+                anios = 10
+            }
+            val pagos = 0;
+
+            val admin = DataBase(this, "GestionPrestamos", null, 1)
+            val db = admin.writableDatabase
+            val registro = ContentValues()
+            registro.put("id",siguienteId+1)
+            registro.put("credit", credito.text.toString().toDouble())
+            registro.put("periodo", anios)
+            registro.put("tipoCredito", infoTipo.text.toString())
+            registro.put("idUser", cedulaView.text.toString())
+            registro.put("cantPagos",pagos)
+
+            println("arroz :  $registro")
+
+            db.insert("prestamos", null, registro)
+
+            db.close()
+
+            Toast.makeText(this, "!Prestamo agregado correctamente!", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun consultarUsuario() {
+        val numIdTxt = numIdConsulta.text.toString()
+
+        if (numIdTxt.isEmpty()) {
+            numIdConsulta.setError("Ingrese una identificación")
+        } else {
+            val admin = DataBase(this, "GestionPrestamos", null, 1)
+            val db = admin.writableDatabase
+            val fila = db.rawQuery(
+                "select name, id, salary, phone from usuarios where id = '$numIdTxt'",
+                null
+            )
+
+            if (fila.moveToFirst()) {
+                nombreView.setText(fila.getString(0))
+                cedulaView.setText(fila.getString(1))
+                salarioView.setText(fila.getDouble(2).toInt().toString())
+                telefonoView.setText(fila.getString(3))
+                numIdConsulta.setText("")
+            } else {
+                nombreView.setText("")
+                cedulaView.setText("")
+                salarioView.setText("")
+                telefonoView.setText("")
+                Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
+            }
+            db.close()
+        }
     }
 
     fun initComponents() {
@@ -74,151 +224,16 @@ class agregarPrestamo : AppCompatActivity() {
 
     }
 
-    fun compruebaCampos(): Boolean {
-
-        var bandera = true
-        if (nombreView.text.toString().isEmpty() || cedulaView.text.toString().isEmpty()
-            || salarioView.text.toString().isEmpty() || telefonoView.text.toString().isEmpty()
-        ) {
-            numIdConsulta.error = "Ingrese una identificación válida"
-            bandera = false
-        }
-        if (credito.text.toString().isEmpty()) {
-            credito.error = "Debe ingresar un valor"
-            bandera = false
-        }
-        if (!credito.text.toString().isEmpty()) {
-            if (!verificaCredito()) {
-                credito.error = "El crédito máximo para este usuario es de: " + salarioView.text.toString()
-                    .toInt() * 0.45
-                bandera = false
-            }
-        } else {
-            credito.error = "Ingrese un monto válido"
-        }
-        if (bandera) {
-            return true
-        }
-        return false
-    }
-
-    fun verificaCredito(): Boolean {
-        if (credito.text.toString().toInt() <= salarioView.text.toString().toInt() * 0.45) {
-            return true
-        }
-        return false
-    }
-
-    @SuppressLint("SuspiciousIndentation")
-    fun procesarPrestamo(): Boolean {
-        if (compruebaCampos()) {
-            cedulaView.text.toString()
-            credito.text.toString()
-            periodo.selectedItem.toString()
-            tipo.selectedItem.toString()
-
-            val anios: Int
-            if (periodo.selectedItem.toString().equals("3 años")) {
-                anios = 3
-            } else if (periodo.selectedItem.toString().equals("5 años")) {
-                anios = 5
-            } else {
-                anios = 10
-            }
-
-            loan = Loan(
-                cedulaView.text.toString(),
-                credito.text.toString().toDouble(),
-                anios,
-                tipo.selectedItem.toString()
-            )
-
-            mensualidad.text = loan.calculateMonthlyPayment().toInt().toString()
-            infoPeriodo.text = "${loan.getPeriod()} años"
-            infoTipo.text = loan.getTypeLoan()
-            infoInteres.text = (loan.getInterestRate() * 100).toString() + "%"
-            return true
-        }
-        return false
-    }
-
     @RequiresApi(Build.VERSION_CODES.P)
-    fun agregarPrestamo() {
+    fun obtenerId(){
+        val admin = DataBase(this, "GestionPrestamos", null, 1)
+        val db = admin.writableDatabase
 
-        if (mensualidad.text.toString().isEmpty() ||
-            infoPeriodo.text.toString().isEmpty() ||
-            infoTipo.text.toString().isEmpty() ||
-            infoInteres.text.toString().isEmpty()
-        ) {
-            credito.error = "Ingrese un monto antes de proceder"
-        } else {
+        val filaCountQuery = "SELECT COUNT(*) FROM prestamos"
+        val filaCount = db.rawQuery(filaCountQuery, null)
 
-            val anios: Int
-            if (periodo.selectedItem.toString().equals("3 años")) {
-                anios = 3
-            } else if (periodo.selectedItem.toString().equals("5 años")) {
-                anios = 5
-            } else {
-                anios = 10
-            }
-            loan = Loan(
-                cedulaView.text.toString(),
-                credito.text.toString().toDouble(),
-                anios,
-                infoTipo.text.toString()
-            )
-
-
-            val admin = DataBase(this, "GestionPrestamos", null, 1)
-            val db = admin.writableDatabase
-            val registro = ContentValues()
-            registro.put("credit", loan.getTotalAmount())
-            registro.put("periodo", loan.getPeriod())
-            registro.put("tipoCredito", loan.getTypeLoan())
-            registro.put("idUser", loan.getUserId())
-
-            db.insert("prestamos", null, registro)
-            db.close()
-
-            mensualidad.text = ""
-            infoPeriodo.text = ""
-            infoTipo.text = ""
-            infoInteres.text = ""
-
-            Toast.makeText(this, "!Prestamo agregado correctamente!", Toast.LENGTH_SHORT)
-                .show()
-        }
+        filaCount.moveToFirst()
+        siguienteId = filaCount.getInt(0)
+        db.close()
     }
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    fun consultarUsuario() {
-        val numIdTxt = numIdConsulta.text.toString()
-
-        if (numIdTxt.isEmpty()) {
-            numIdConsulta.error = "Ingrese una identificación"
-        } else {
-            val admin = DataBase(this, "GestionPrestamos", null, 1)
-            val db = admin.writableDatabase
-            val fila = db.rawQuery(
-                "select name, id, salary, phone from usuarios where id = '$numIdTxt'",
-                null
-            )
-
-            if (fila.moveToFirst()) {
-                nombreView.text = fila.getString(0)
-                cedulaView.text = fila.getString(1)
-                salarioView.text = fila.getDouble(2).toInt().toString()
-                telefonoView.text = fila.getString(3)
-                numIdConsulta.setText("")
-            } else {
-                nombreView.text = ""
-                cedulaView.text = ""
-                salarioView.text = ""
-                telefonoView.text = ""
-                Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
-            }
-            db.close()
-        }
-    }
-
 }

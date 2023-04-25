@@ -43,7 +43,7 @@ class LoanDetails : AppCompatActivity() {
 
     fun cargarInfo(){
         idLoan.text = "Prestamos : #${loan.getId()}"
-        customerTextView.text = "Cliente: ${loan.getCustomerUsername()}"
+        customerTextView.text = "Cliente: ${loan.getUserId()}"
         amountTextView.text = "Monto Total: ${loan.getTotalAmount()}"
         periodTextView.text = "Plazo Total en Meses: ${loan.getPeriod()*12}"
         remainingAmountTextView.text = "Monto Restante : ${loan.remainingAmount()}"

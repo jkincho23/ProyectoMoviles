@@ -13,7 +13,7 @@ import modelos.Loan
 class agregarPrestamo : AppCompatActivity() {
 
     // Variables
-    var siguienteId : Int = 0;
+    var siguienteId: Int = 0
 
     // Información del cliente consultado
     lateinit var numIdConsulta: EditText
@@ -92,7 +92,6 @@ class agregarPrestamo : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     fun procesarPrestamo(): Boolean {
         if (compruebaCampos()) {
-            //  infoPeriodo.setText(periodo.selectedItem.toString())
             cedulaView.text.toString()
             credito.text.toString()
             periodo.selectedItem.toString()
@@ -107,7 +106,8 @@ class agregarPrestamo : AppCompatActivity() {
                 anios = 10
             }
 
-            val loan = Loan(siguienteId+1,
+            val loan = Loan(
+                siguienteId + 1,
                 cedulaView.text.toString(),
                 credito.text.toString().toDouble(),
                 anios,
@@ -115,10 +115,10 @@ class agregarPrestamo : AppCompatActivity() {
                 0
             )
 
-            mensualidad.setText(loan.calculateMonthlyPayment().toInt().toString())
-            infoPeriodo.setText("${loan.getPeriod()} años")
-            infoTipo.setText(loan.getTypeLoan())
-            infoInteres.setText((loan.getInterestRate() * 100).toString() + "%")
+            mensualidad.text = loan.calculateMonthlyPayment().toInt().toString()
+            infoPeriodo.text = "${loan.getPeriod()} años"
+            infoTipo.text = loan.getTypeLoan()
+            infoInteres.text = (loan.getInterestRate() * 100).toString() + "%"
             return true
         }
         return false
@@ -142,23 +142,36 @@ class agregarPrestamo : AppCompatActivity() {
             } else {
                 anios = 10
             }
-            val pagos = 0;
+            val pagos = 0
+
+            loan = Loan(
+                siguienteId + 1,
+                cedulaView.text.toString(),
+                credito.text.toString().toDouble(),
+                anios,
+                tipo.selectedItem.toString(),
+                pagos
+            )
+
 
             val admin = DataBase(this, "GestionPrestamos", null, 1)
             val db = admin.writableDatabase
             val registro = ContentValues()
-            registro.put("id",siguienteId+1)
-            registro.put("credit", credito.text.toString().toDouble())
-            registro.put("periodo", anios)
-            registro.put("tipoCredito", infoTipo.text.toString())
-            registro.put("idUser", cedulaView.text.toString())
-            registro.put("cantPagos",pagos)
+            registro.put("id",loan.getId())
+            registro.put("credit", loan.getTotalAmount())
+            registro.put("periodo", loan.getPeriod())
+            registro.put("tipoCredito", loan.getTypeLoan())
+            registro.put("idUser", loan.getUserId())
+            registro.put("cantPagos", loan.getPayment())
 
-            println("arroz :  $registro")
 
             db.insert("prestamos", null, registro)
-
             db.close()
+
+            mensualidad.text = ""
+            infoPeriodo.text = ""
+            infoTipo.text = ""
+            infoInteres.text = ""
 
             Toast.makeText(this, "!Prestamo agregado correctamente!", Toast.LENGTH_SHORT)
                 .show()
@@ -180,16 +193,17 @@ class agregarPrestamo : AppCompatActivity() {
             )
 
             if (fila.moveToFirst()) {
-                nombreView.setText(fila.getString(0))
-                cedulaView.setText(fila.getString(1))
-                salarioView.setText(fila.getDouble(2).toInt().toString())
-                telefonoView.setText(fila.getString(3))
+                nombreView.text = fila.getString(0)
+                cedulaView.text = fila.getString(1)
+                salarioView.text = fila.getDouble(2).toInt().toString()
+                telefonoView.text = fila.getString(3)
                 numIdConsulta.setText("")
             } else {
-                nombreView.setText("")
-                cedulaView.setText("")
-                salarioView.setText("")
-                telefonoView.setText("")
+                nombreView.text = ""
+                cedulaView.text = ""
+                salarioView.text = ""
+                telefonoView.text = ""
+                credito.setText("")
                 Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
             }
             db.close()
@@ -225,7 +239,7 @@ class agregarPrestamo : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
-    fun obtenerId(){
+    fun obtenerId() {
         val admin = DataBase(this, "GestionPrestamos", null, 1)
         val db = admin.writableDatabase
 

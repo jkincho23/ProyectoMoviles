@@ -115,5 +115,7 @@ class Loan(
         }
     }
 
-
+    fun doPaymenent(){
+        
+    }
 }

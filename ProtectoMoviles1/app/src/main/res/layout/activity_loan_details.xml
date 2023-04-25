@@ -21,7 +21,7 @@
         app:layout_constraintBottom_toTopOf="@id/payButton">
 
         <TextView
-            android:id="@+id/customerTextView"
+            android:id="@+id/idLoan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -30,7 +30,7 @@
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/idLoan"
+            android:id="@+id/customerTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

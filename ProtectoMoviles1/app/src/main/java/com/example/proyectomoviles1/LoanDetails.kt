@@ -1,5 +1,6 @@
 package com.example.proyectomoviles1
 
+import android.content.ContentValues
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,6 +26,7 @@ class LoanDetails : AppCompatActivity() {
     private lateinit var loan : Loan
 
     private lateinit var listView: ListView
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loan_details)
@@ -33,6 +35,12 @@ class LoanDetails : AppCompatActivity() {
         initComponent()
         cargarInfo();
         payButton.setOnClickListener { pagar() }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        payButton.isEnabled = true
+        payButton.text = "Pagar"
     }
 
     fun initComponent(){
@@ -61,25 +69,29 @@ class LoanDetails : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     fun pagar(){
         loan.doPaymenent()
-        println("Monto Pendiente  ${loan.remainingAmount()}")
-        println("Pagos Pendiente  ${loan.remainingPayments()}")
-
         val admin = DataBase(this,"GestionPrestamos",null,1)
         val db = admin.writableDatabase
 
-        val fila = db.rawQuery("select credit, periodo, tipoCredito, cantPagos, id from prestamos where id = '${loan.getId()}'", null)
-
-        if(fila.moveToFirst()){
-
-                val credit = fila.getDouble(0) // Obtener el valor de la columna "credit" como entero
-                val periodo = fila.getInt(1) // Obtener el valor de la columna "periodo" como cadena de texto
-                val tipoCredito = fila.getString(2) // Obtener el valor de la columna "tipoCredito" como cadena de texto
-                val cantPagos = fila.getString(3).toInt()
-                val id = fila.getString(4).toInt()
-
-        }else {
-            Toast.makeText(this, "Prestamo Pagado", Toast.LENGTH_SHORT).show()
+        if(loan.remainingPayments() == 0){
+            payButton.text = "Prestamo Cancelado"
+            payButton.isEnabled = false
         }
+
+        val values = ContentValues()
+        values.put("cantPagos", loan.getPayment())
+
+        val affectedRows = db.update(
+            "prestamos",
+            values,
+            "id = ${loan.getId()}",
+            null
+        )
+
+        db.close()
+        if (affectedRows > 0) {
+            Toast.makeText(this, "Préstamo actualizado", Toast.LENGTH_SHORT).show()
+        }
+        cargarInfo()
 
 
     }

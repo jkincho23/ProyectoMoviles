@@ -25,12 +25,10 @@ class Loan(
 
     fun setAmount(amount: Double) {
         this.amount = amount
-        calculateTotalAmount()
     }
 
     fun setPeriod(period: Int) {
         this.period = period
-        calculateTotalAmount()
     }
 
     fun setInterestRate(interestRate: Double) {

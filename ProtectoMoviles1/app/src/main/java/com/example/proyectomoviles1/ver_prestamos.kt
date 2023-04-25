@@ -31,7 +31,14 @@ class ver_prestamos : AppCompatActivity() {
         cargarPrestamos()
         initComponent()
         clicklers()
-1
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    override fun onResume() {
+        super.onResume()
+        prestamosList.clear()
+        cargarPrestamos()
+        initComponent()
     }
 
     fun initComponent(){
@@ -77,10 +84,15 @@ class ver_prestamos : AppCompatActivity() {
 
 
                 val loan = Loan(id,id_user, credit, periodo, tipoCredito,cantPagos)
-
-                println(loan)
-                prestamosList.add(loan)
+                if(loan.remainingPayments() != 0){
+                    println(loan.getPayment())
+                    prestamosList.add(loan)
+                }
             } while (fila.moveToNext())
+
+            if(prestamosList.isEmpty()){
+                Toast.makeText(this, "No tiene Prestamos", Toast.LENGTH_SHORT).show()
+            }
 
         }else {
             Toast.makeText(this, "No tiene Prestamos", Toast.LENGTH_SHORT).show()

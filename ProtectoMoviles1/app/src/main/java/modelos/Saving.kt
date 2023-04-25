@@ -1,21 +1,25 @@
 package modelos
 
-class Saving(private val customerUserName: String, private var typeSaving: String) {
+import java.io.Serializable
+
+class Saving(private val idUser: String,
+             private var typeSaving: String,
+             private var isActive: Boolean,
+             private var savingAmount: Double
+): Serializable {
 
 
-    private var isActive: Boolean = false
-    private var savingAmount: Double = 0.0
 
     init {
         println("Se ha creado un objeto Saving con los siguientes datos:")
-        println("Nombre de usuario del cliente: $customerUserName")
+        println("Nombre de usuario del cliente: $idUser")
         println("Tipo de ahorro: $typeSaving")
         println("Estado del ahorro: $isActive")
-        println("Monto ahorrado: $savingAmount")
+        println("Monto ahorrado Mensualmente: $savingAmount")
     }
 
     fun getCustomerUserName(): String {
-        return customerUserName
+        return idUser
     }
 
     fun setTypeSaving(typeSaving: String) {
@@ -60,7 +64,7 @@ class Saving(private val customerUserName: String, private var typeSaving: Strin
     }
 
     override fun toString(): String {
-        return "Customer UserName: $customerUserName\nType of Saving: $typeSaving\nActive: $isActive\nSaving Amount: $savingAmount"
+        return "Customer UserName: $idUser\nType of Saving: $typeSaving\nActive: $isActive\nSaving Amount: $savingAmount"
     }
 
 }

@@ -22,6 +22,8 @@ class DataBase(
 
         dataBase?.execSQL("create table prestamos(id Integer, credit real, periodo real, tipoCredito String, idUser String, cantPagos Integer)")
 
+        dataBase?.execSQL("create table ahorros(idUser String, typeSaving String, isActive Boolean, savingAmount real)")
+
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {

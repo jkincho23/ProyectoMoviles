@@ -16,7 +16,8 @@
             android:exported="false" />
         <activity
             android:name=".ver_ahorros"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Ver mis ahorros"/>
         <activity
             android:name=".ver_prestamos"
             android:exported="false"
@@ -37,13 +38,16 @@
         <activity
             android:name=".ClientePrincipal"
             android:exported="false"
+            android:label="Menú Principal"
             android:parentActivityName=".AdminPrincipal" />
         <activity
             android:name=".AdminPrincipal"
             android:exported="false"
+            android:label="Menú Principal"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
+            android:label="Inicio de Sesión"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

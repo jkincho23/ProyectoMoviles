@@ -19,13 +19,13 @@ fun main() {
     println("---------------------------")
     println("---------------------------")
 
-    val saving = Saving("usuario1", "Navideño")
+//    val saving = Saving("usuario1", "Navideño")
     println("---------------------------")
-    saving.activateSaving(5000.0)
-    println(saving.toString())
+    //saving.activateSaving(5000.0)
+    //println(saving.toString())
     println("---------------------------")
-    saving.deactivateSaving()
-    println(saving.toString())
+    //saving.deactivateSaving()
+    //println(saving.toString())
 
 //    val users = arrayOf(usuario1,client)
 //

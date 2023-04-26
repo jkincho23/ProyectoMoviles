@@ -93,13 +93,10 @@ class ver_prestamos : AppCompatActivity() {
             if(prestamosList.isEmpty()){
                 Toast.makeText(this, "No tiene Prestamos", Toast.LENGTH_SHORT).show()
             }
-
+        db.close()
         }else {
             Toast.makeText(this, "No tiene Prestamos", Toast.LENGTH_SHORT).show()
         }
-
-
-
 
     }
 }

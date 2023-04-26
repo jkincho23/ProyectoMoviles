@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
 import data.DataBase
+import modelos.Saving
 
 class agregarCliente : AppCompatActivity() {
 
@@ -118,6 +119,20 @@ class agregarCliente : AppCompatActivity() {
             registro.put("address",direccion.text.toString())
 
             db.insert("usuarios", null, registro)
+            // Insert de Ahorros para este cliente
+            val registroAhorro = ContentValues()
+            registroAhorro.put("idUser",cedula.text.toString())
+            registroAhorro.put("typeSaving","Navideño")
+            registroAhorro.put("isActive",false)
+            registroAhorro.put("savingAmount",0.0)
+            db.insert("ahorros", null, registroAhorro)
+            registroAhorro.put("typeSaving","Escolar")
+            db.insert("ahorros", null, registroAhorro)
+            registroAhorro.put("typeSaving","Marchamo")
+            db.insert("ahorros", null, registroAhorro)
+            registroAhorro.put("typeSaving","Extraordinario")
+            db.insert("ahorros", null, registroAhorro)
+
             db.close()
 
             nombreUsuario.setText("")

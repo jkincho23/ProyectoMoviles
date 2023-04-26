@@ -188,16 +188,21 @@ class agregarPrestamo : AppCompatActivity() {
             val admin = DataBase(this, "GestionPrestamos", null, 1)
             val db = admin.writableDatabase
             val fila = db.rawQuery(
-                "select name, id, salary, phone from usuarios where id = '$numIdTxt'",
+                "select name, id, salary, phone, role from usuarios where id = '$numIdTxt'",
                 null
             )
 
             if (fila.moveToFirst()) {
-                nombreView.text = fila.getString(0)
-                cedulaView.text = fila.getString(1)
-                salarioView.text = fila.getDouble(2).toInt().toString()
-                telefonoView.text = fila.getString(3)
-                numIdConsulta.setText("")
+                if(fila.getString(4) == "Administrador"){  // se comprueba que el usuario consultado
+                    Toast.makeText(this, "No se pueden asignar prestamos a administradores",
+                          Toast.LENGTH_SHORT).show()                                        // no sea un administrador
+                }else {
+                    nombreView.text = fila.getString(0)
+                    cedulaView.text = fila.getString(1)
+                    salarioView.text = fila.getDouble(2).toInt().toString()
+                    telefonoView.text = fila.getString(3)
+                    numIdConsulta.setText("")
+                }
             } else {
                 nombreView.text = ""
                 cedulaView.text = ""

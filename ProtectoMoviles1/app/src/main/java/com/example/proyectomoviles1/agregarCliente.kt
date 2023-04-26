@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.annotation.RequiresApi
 import data.DataBase
+import modelos.Client
 import modelos.Saving
 
 class agregarCliente : AppCompatActivity() {
@@ -22,6 +23,8 @@ class agregarCliente : AppCompatActivity() {
     lateinit var rol: Spinner
     lateinit var nombreUsuario: EditText
     lateinit var contrasena: EditText
+
+    lateinit var client: Client
 
     // boton de ingresar nuevo usuario
     lateinit var agregarBtn: Button
@@ -106,22 +109,35 @@ class agregarCliente : AppCompatActivity() {
 
         if(compruebaCampos()
         ){
+            client =  Client(
+                nombreUsuario.text.toString(),
+                nombreUsuario.text.toString(),
+                rol.selectedItem.toString(),
+                nombre.text.toString(),
+                cedula.text.toString().toInt(),
+                salario.text.toString().toDouble(),
+                telefono.text.toString(),
+                fechaNacimiento.text.toString(),
+                estadoCivil.text.toString(),
+                direccion.text.toString()
+            )
+
             val registro = ContentValues()
-            registro.put("userName", nombreUsuario.text.toString())
-            registro.put("password", contrasena.text.toString())
-            registro.put("role",rol.selectedItem.toString())
-            registro.put("id", cedula.text.toString())
-            registro.put("name", nombre.text.toString())
-            registro.put("salary", salario.text.toString())
-            registro.put("phone",telefono.text.toString())
-            registro.put("birtDate", fechaNacimiento.text.toString())
-            registro.put("maritalStatus", estadoCivil.text.toString())
-            registro.put("address",direccion.text.toString())
+            registro.put("userName", client.getUsername())
+            registro.put("password",  client.getPassword())
+            registro.put("role", client.getRole())
+            registro.put("id", client.getCedula())
+            registro.put("name", client.getName())
+            registro.put("salary", client.getSalary())
+            registro.put("phone", client.getPhone())
+            registro.put("birtDate", client.getBirthDate())
+            registro.put("maritalStatus", client.getMaritalStatus())
+            registro.put("address", client.getAddress())
 
             db.insert("usuarios", null, registro)
             // Insert de Ahorros para este cliente
             val registroAhorro = ContentValues()
-            registroAhorro.put("idUser",cedula.text.toString())
+            registroAhorro.put("idUser",client.getCedula())
             registroAhorro.put("typeSaving","Navideño")
             registroAhorro.put("isActive",false)
             registroAhorro.put("savingAmount",0.0)

@@ -36,5 +36,11 @@
     <string name="procesar_btn">Procesar</string>
     <string name="tipoFinalView">Tipo</string>
     <string name="interesView">Interés</string>
+    <string name="ingresa_un_n_mero_decimal">Ingresa tu nueva cifra de ahorro(+5000)</string>
+    <string name="guardar">Guardar</string>
+    <string name="datos_actuales">Datos Actuales</string>
+    <string name="datos_nuevos">Datos Nuevos</string>
+    <string name="no">No</string>
+    <string name="si">Sí</string>
 
 </resources>

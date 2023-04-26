@@ -23,8 +23,8 @@ class LoanDetails : AppCompatActivity() {
     private lateinit var typeTextView: TextView
     private lateinit var amoutToPayTextView: TextView
     private lateinit var payButton: Button
-    private lateinit var loan : Loan
 
+    private lateinit var loan : Loan
     private lateinit var listView: ListView
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -28,7 +28,7 @@ class ver_ahorros : AppCompatActivity() {
         setContentView(R.layout.activity_ver_ahorros)
 
         id_user = intent.getIntExtra("USER_ID",0).toString()
-        println("UserID :: $id_user")
+        println("OnCreate UserID :: $id_user")
         cargarAhorros()
         initComponent()
         clicklers()
@@ -48,7 +48,14 @@ class ver_ahorros : AppCompatActivity() {
                 val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_ahorro, parent, false)
                 val ahorro = ahorrosList[position]
                 view.findViewById<TextView>(R.id.monto).text = "Ahorro: ${ahorro.getSavingAmount()}"
-                view.findViewById<TextView>(R.id.estado).text = "Monto: ${ahorro.getIsActive()}"
+                if(ahorro.getIsActive()){
+                    view.findViewById<TextView>(R.id.estado).text = "Activo: SI"
+                }
+                else{
+                    view.findViewById<TextView>(R.id.estado).text = "Activo: NO"
+
+                }
+
                 view.findViewById<TextView>(R.id.tipoAhorro).text = "Tipo: ${ahorro.getTypeSaving()}"
                 return view
             }
@@ -60,7 +67,7 @@ class ver_ahorros : AppCompatActivity() {
     fun clicklers(){
         listView.setOnItemClickListener { parent, view, position, id ->
             val saving = ahorrosList[position]
-            val intent = Intent(this, LoanDetails::class.java)
+            val intent = Intent(this, editar_ahorro::class.java)
             intent.putExtra("saving", saving)
             startActivity(intent)
         }
@@ -70,13 +77,13 @@ class ver_ahorros : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     fun cargarAhorros(){
 
+        println("Cargando ahorros")
+
         val admin = DataBase(this,"GestionPrestamos",null,1)
         val db = admin.writableDatabase
 
         val fila = db.rawQuery("select idUser, typeSaving, isActive, savingAmount from ahorros where idUser = '$id_user'", null)
-
-
-
+        var counter : Int = 1
         if(fila.moveToFirst()){
 
             do {
@@ -85,20 +92,19 @@ class ver_ahorros : AppCompatActivity() {
                 val isActive = fila.getInt(2) == 1
                 val savingAmount = fila.getDouble(3)
 
-
-                println("Valor de idUser: $idUser")
-                println("Valor de typeActive: $typeActive")
-                println("Valor de isActive: $isActive")
-                println("Valor de savingAmount: $savingAmount")
-
+                println("-")
+                println("-")
+                println("-")
+                println("Ahorro : $counter")
+                println("-")
                 val saving = Saving(id_user, typeActive, isActive, savingAmount)
-                println(saving.toString())
                 ahorrosList.add(saving)
+                counter++
             } while (fila.moveToNext())
 
             db.close()
         }else {
-            Toast.makeText(this, "No tiene Prestamos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "No tiene Ahorros", Toast.LENGTH_SHORT).show()
         }
 
     }

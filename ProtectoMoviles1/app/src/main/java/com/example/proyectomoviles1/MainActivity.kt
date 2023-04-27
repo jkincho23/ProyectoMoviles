@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         }else {
             Toast.makeText(this, "Usuario no encontrados", Toast.LENGTH_SHORT).show()
         }
+        db.close()
     }
 
     @RequiresApi(Build.VERSION_CODES.P)

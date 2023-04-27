@@ -60,6 +60,7 @@ class agregarCliente : AppCompatActivity() {
         agregarBtn = findViewById(R.id.insertarClienteBtn)
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     fun compruebaCampos(): Boolean {
 
         var bandera = true
@@ -117,6 +118,36 @@ class agregarCliente : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
+    fun compruebaNombreUsuario(): Boolean {
+
+        val admin = DataBase(this, "GestionPrestamos", null, 1)
+        val db = admin.writableDatabase
+        val user =  nombreUsuario.text.toString()
+
+        val fila = db.rawQuery("select * from usuarios where userName = '$user'", null)
+
+        if(fila.moveToFirst()){
+           return true
+         }
+        return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
+    fun compruebaCedula(): Boolean {
+
+        val admin = DataBase(this, "GestionPrestamos", null, 1)
+        val db = admin.writableDatabase
+        val idUser =  cedula.text.toString()
+
+        val fila = db.rawQuery("select * from usuarios where id = '$idUser'", null)
+
+        if(fila.moveToFirst()){
+            return true
+        }
+        return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.P)
     fun insertarCliente() {
 
         val admin = DataBase(this, "GestionPrestamos", null, 1)
@@ -124,57 +155,75 @@ class agregarCliente : AppCompatActivity() {
 
         if (compruebaCampos()
         ) {
-            client = Client(
-                nombreUsuario.text.toString(),
-                nombreUsuario.text.toString(),
-                rol.selectedItem.toString(),
-                nombre.text.toString(),
-                cedula.text.toString().toInt(),
-                salario.text.toString().toDouble(),
-                telefono.text.toString(),
-                fechaNacimiento.text.toString(),
-                estadoCivil.selectedItem.toString(),
-                direccion.text.toString()
-            )
+            if (!compruebaNombreUsuario()) {
+                if(!compruebaCedula()){
+                client = Client(
+                    nombreUsuario.text.toString(),
+                    nombreUsuario.text.toString(),
+                    rol.selectedItem.toString(),
+                    nombre.text.toString(),
+                    cedula.text.toString().toInt(),
+                    salario.text.toString().toDouble(),
+                    telefono.text.toString(),
+                    fechaNacimiento.text.toString(),
+                    estadoCivil.selectedItem.toString(),
+                    direccion.text.toString()
+                )
+                // insert del cliente
+                val registro = ContentValues()
+                registro.put("userName", client.getUsername())
+                registro.put("password", client.getPassword())
+                registro.put("role", client.getRole())
+                registro.put("id", client.getCedula())
+                registro.put("name", client.getName())
+                registro.put("salary", client.getSalary())
+                registro.put("phone", client.getPhone())
+                registro.put("birtDate", client.getBirthDate())
+                registro.put("maritalStatus", client.getMaritalStatus())
+                registro.put("address", client.getAddress())
 
-            val registro = ContentValues()
-            registro.put("userName", client.getUsername())
-            registro.put("password", client.getPassword())
-            registro.put("role", client.getRole())
-            registro.put("id", client.getCedula())
-            registro.put("name", client.getName())
-            registro.put("salary", client.getSalary())
-            registro.put("phone", client.getPhone())
-            registro.put("birtDate", client.getBirthDate())
-            registro.put("maritalStatus", client.getMaritalStatus())
-            registro.put("address", client.getAddress())
+                val count = db.insert("usuarios", null, registro)
 
-            db.insert("usuarios", null, registro)
-            // Insert de Ahorros para este cliente
-            val registroAhorro = ContentValues()
-            registroAhorro.put("idUser", client.getCedula())
-            registroAhorro.put("typeSaving", "Navideño")
-            registroAhorro.put("isActive", false)
-            registroAhorro.put("savingAmount", 0.0)
-            db.insert("ahorros", null, registroAhorro)
-            registroAhorro.put("typeSaving", "Escolar")
-            db.insert("ahorros", null, registroAhorro)
-            registroAhorro.put("typeSaving", "Marchamo")
-            db.insert("ahorros", null, registroAhorro)
-            registroAhorro.put("typeSaving", "Extraordinario")
-            db.insert("ahorros", null, registroAhorro)
+                if (count > 0) {
+                    Toast.makeText(this, "!Usuario ingresado con éxito!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "!Ocurrió un error ingresando el usuario!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
-            db.close()
+                // Insert de Ahorros para este cliente
+                val registroAhorro = ContentValues()
+                registroAhorro.put("idUser", client.getCedula())
+                registroAhorro.put("typeSaving", "Navideño")
+                registroAhorro.put("isActive", false)
+                registroAhorro.put("savingAmount", 0.0)
+                db.insert("ahorros", null, registroAhorro)
+                registroAhorro.put("typeSaving", "Escolar")
+                db.insert("ahorros", null, registroAhorro)
+                registroAhorro.put("typeSaving", "Marchamo")
+                db.insert("ahorros", null, registroAhorro)
+                registroAhorro.put("typeSaving", "Extraordinario")
+                db.insert("ahorros", null, registroAhorro)
 
-            nombreUsuario.setText("")
-            contrasena.setText("")
-            cedula.setText("")
-            nombre.setText("")
-            salario.setText("")
-            telefono.setText("")
-            fechaNacimiento.setText("")
-            direccion.setText("")
-            Toast.makeText(this, "!Usuario ingresado con éxito!", Toast.LENGTH_SHORT).show()
+                db.close()
+
+                nombreUsuario.setText("")
+                contrasena.setText("")
+                cedula.setText("")
+                nombre.setText("")
+                salario.setText("")
+                telefono.setText("")
+                fechaNacimiento.setText("")
+                direccion.setText("")
+                }else{
+                    cedula.error = "¡Cédula ya existente!"
+                }
+            }else{
+                nombreUsuario.error = "¡Nombre de usuario ya existente!"
+            }
         }
     }
 }

@@ -13,28 +13,28 @@ import modelos.Loan
 class agregarPrestamo : AppCompatActivity() {
 
     // Variables
-    var siguienteId: Int = 0
+    private var siguienteId: Int = 0
 
     // Información del cliente consultado
-    lateinit var numIdConsulta: EditText
-    lateinit var nombreView: TextView
-    lateinit var cedulaView: TextView
-    lateinit var salarioView: TextView
-    lateinit var telefonoView: TextView
-    lateinit var consultarBtn: ImageButton
+    private lateinit var numIdConsulta: EditText
+    private lateinit var nombreView: TextView
+    private lateinit var cedulaView: TextView
+    private lateinit var salarioView: TextView
+    private lateinit var telefonoView: TextView
+    private lateinit var consultarBtn: ImageButton
 
     //Informacion para ingresar prestamo
-    lateinit var credito: EditText
-    lateinit var periodo: Spinner
+    private lateinit var credito: EditText
+    private lateinit var periodo: Spinner
     lateinit var tipo: Spinner
-    lateinit var procesarBtn: Button
-    lateinit var agregarPrestamoBtn: Button
-    lateinit var infoPeriodo: TextView
-    lateinit var mensualidad: TextView
-    lateinit var infoTipo: TextView
-    lateinit var infoInteres: TextView
+    private lateinit var procesarBtn: Button
+    private lateinit var agregarPrestamoBtn: Button
+    private lateinit var infoPeriodo: TextView
+    private lateinit var mensualidad: TextView
+    private lateinit var infoTipo: TextView
+    private lateinit var infoInteres: TextView
 
-    lateinit var loan: Loan
+    private lateinit var loan: Loan
 
 
     @RequiresApi(Build.VERSION_CODES.P)
@@ -98,12 +98,12 @@ class agregarPrestamo : AppCompatActivity() {
             tipo.selectedItem.toString()
 
             val anios: Int
-            if (periodo.selectedItem.toString().equals("3 años")) {
-                anios = 3
+            anios = if (periodo.selectedItem.toString().equals("3 años")) {
+                3
             } else if (periodo.selectedItem.toString().equals("5 años")) {
-                anios = 5
+                5
             } else {
-                anios = 10
+                10
             }
 
             val loan = Loan(
@@ -157,7 +157,7 @@ class agregarPrestamo : AppCompatActivity() {
             val admin = DataBase(this, "GestionPrestamos", null, 1)
             val db = admin.writableDatabase
             val registro = ContentValues()
-            registro.put("id",loan.getId())
+            registro.put("id", loan.getId())
             registro.put("credit", loan.getTotalAmount())
             registro.put("periodo", loan.getPeriod())
             registro.put("tipoCredito", loan.getTypeLoan())
@@ -172,6 +172,7 @@ class agregarPrestamo : AppCompatActivity() {
             infoPeriodo.text = ""
             infoTipo.text = ""
             infoInteres.text = ""
+            credito.setText("")
 
             Toast.makeText(this, "!Prestamo agregado correctamente!", Toast.LENGTH_SHORT)
                 .show()
@@ -193,10 +194,12 @@ class agregarPrestamo : AppCompatActivity() {
             )
 
             if (fila.moveToFirst()) {
-                if(fila.getString(4) == "Administrador"){  // se comprueba que el usuario consultado
-                    Toast.makeText(this, "No se pueden asignar prestamos a administradores",
-                          Toast.LENGTH_SHORT).show()                                        // no sea un administrador
-                }else {
+                if (fila.getString(4) == "Administrador") {  // se comprueba que el usuario consultado
+                    Toast.makeText(
+                        this, "No se pueden asignar prestamos a administradores",
+                        Toast.LENGTH_SHORT
+                    ).show()                                        // no sea un administrador
+                } else {
                     nombreView.text = fila.getString(0)
                     cedulaView.text = fila.getString(1)
                     salarioView.text = fila.getDouble(2).toInt().toString()

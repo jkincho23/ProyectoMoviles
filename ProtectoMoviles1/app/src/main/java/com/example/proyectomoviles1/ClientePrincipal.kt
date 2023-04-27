@@ -9,6 +9,7 @@ class ClientePrincipal : AppCompatActivity() {
     lateinit var viewLoan: Button
     lateinit var viewSaving: Button
     lateinit var calcular_cuota: Button
+    lateinit var personalData: Button
     var idUser : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,12 +22,14 @@ class ClientePrincipal : AppCompatActivity() {
         viewLoan.setOnClickListener{openVerPrestamos()}
         viewSaving.setOnClickListener{openVerAhorros()}
         calcular_cuota.setOnClickListener { openCalculaCuota() }
+        personalData.setOnClickListener { openPersonalData() }
     }
 
     fun initCompontent(){
         viewLoan =findViewById(R.id.gestionarPrestamosBtn)
         viewSaving =findViewById(R.id.gestionarAhorrosBtn)
         calcular_cuota = findViewById(R.id.calculaCuotaBtn)
+        personalData = findViewById(R.id.informacionPersonalBtn)
         idUser = intent.getIntExtra("USER_ID",0)
     }
 
@@ -42,6 +45,11 @@ class ClientePrincipal : AppCompatActivity() {
     }
     fun openCalculaCuota(){
         val intent = Intent(this, calcula_Cuota::class.java)
+        intent.putExtra("USER_ID", idUser)
+        startActivity(intent)
+    }
+    fun openPersonalData(){
+        val intent = Intent(this, PersonalData::class.java)
         intent.putExtra("USER_ID", idUser)
         startActivity(intent)
     }

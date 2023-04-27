@@ -17,7 +17,7 @@
     <string name="nombreClienteTxt">Nombre</string>
     <string name="cedulaClienteTxt">Cedula</string>
     <string name="estado_civil">Estado Civil</string>
-    <string name="fechaNacimientoClienteTxt">Fecha Nacimiento</string>
+    <string name="fechaNacimientoClienteTxt">Nacimiento</string>
     <string name="salarioView">Salario: </string>
     <string name="creditoView">Credito: </string>
     <string name="cedulaView">Cedula: </string>
@@ -47,5 +47,7 @@
     <string name="credito">creditoTXT</string>
     <string name="seleccione_el_tipo">Seleccione el tipo</string>
     <string name="hint_creditoTxt">Inserte Monto a Solicitar</string>
+    <string name="nac">Nac</string>
+    <string name="direccion">Direccion</string>
 
 </resources>

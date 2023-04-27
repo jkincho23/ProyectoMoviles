@@ -28,6 +28,8 @@ class agregarCliente : AppCompatActivity() {
     // boton de ingresar nuevo usuario
     lateinit var agregarBtn: Button
 
+    val PATRON_FECHA = Regex("""\d{2}/\d{2}/\d{4}""")
+
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,8 +105,8 @@ class agregarCliente : AppCompatActivity() {
             telefono.error = "Ingrese un número de teléfono válido"
             bandera = false
         }
-        if (fecNacText.isEmpty()) {
-            fechaNacimiento.error = "Ingrese una fecha de nacimiento válida"
+        if (fecNacText.isEmpty() || !fecNacText.matches(PATRON_FECHA)) {
+            fechaNacimiento.error = "Ingrese una fecha de nacimiento o formato válido"
             bandera = false
         }
         if (direecionTxt.isEmpty()) {

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.P)
     fun login() {
         if (compruebaCampos()) {
-            consultar();
+            consultar()
         }
     }
 
@@ -119,14 +119,14 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.P)
     fun cargarDatos() {
-        val cliente1: Client = Client("andres","andres","Cliente",
+        val cliente1 = Client("andres","andres","Cliente",
             "Andres Martinez Araya",208270803, 1500000.0, "632548785", "28/05/1997",
-            "Soltero", "Barreal de Heredia 100 mts pul veranera");
-        val cliente2: Client = Client("marcos","marcos","Administrador",
+            "Soltero", "Barreal de Heredia 100 mts pul veranera")
+        val cliente2 = Client("marcos","marcos","Administrador",
             "Marcos Lopez Araya",123456789, 1800000.0, "632548785", "28/10/1997",
-            "Soltero", "Barreal de Heredia 100 mts pul veranera");
+            "Soltero", "Barreal de Heredia 100 mts pul veranera")
 
-        insertarCliente(cliente1);
-        insertarCliente(cliente2);
+        insertarCliente(cliente1)
+        insertarCliente(cliente2)
     }
 }

@@ -42,7 +42,7 @@ class ver_prestamos : AppCompatActivity() {
     }
 
     fun initComponent(){
-        var adapter = object : ArrayAdapter<Loan>(this, R.layout.item_prestamo, prestamosList) {
+        val adapter = object : ArrayAdapter<Loan>(this, R.layout.item_prestamo, prestamosList) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_prestamo, parent, false)
                 val prestamo = prestamosList[position]

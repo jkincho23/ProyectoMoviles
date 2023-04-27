@@ -13,7 +13,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import data.DataBase
-import modelos.Loan
 import modelos.Saving
 
 class ver_ahorros : AppCompatActivity() {
@@ -43,7 +42,7 @@ class ver_ahorros : AppCompatActivity() {
     }
 
     fun initComponent(){
-        var adapter = object : ArrayAdapter<Saving>(this, R.layout.item_ahorro, ahorrosList) {
+        val adapter = object : ArrayAdapter<Saving>(this, R.layout.item_ahorro, ahorrosList) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_ahorro, parent, false)
                 val ahorro = ahorrosList[position]
@@ -83,7 +82,7 @@ class ver_ahorros : AppCompatActivity() {
         val db = admin.writableDatabase
 
         val fila = db.rawQuery("select idUser, typeSaving, isActive, savingAmount from ahorros where idUser = '$id_user'", null)
-        var counter : Int = 1
+        var counter = 1
         if(fila.moveToFirst()){
 
             do {

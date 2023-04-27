@@ -8,7 +8,6 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import data.DataBase
 import modelos.Client
-import modelos.Saving
 
 class agregarCliente : AppCompatActivity() {
 
@@ -17,10 +16,10 @@ class agregarCliente : AppCompatActivity() {
     lateinit var cedula: EditText
     lateinit var salario: EditText
     lateinit var telefono: EditText
-    lateinit var estadoCivil: EditText
     lateinit var fechaNacimiento: EditText
     lateinit var direccion: EditText
     lateinit var rol: Spinner
+    lateinit var estadoCivil: Spinner
     lateinit var nombreUsuario: EditText
     lateinit var contrasena: EditText
 
@@ -35,29 +34,35 @@ class agregarCliente : AppCompatActivity() {
         setContentView(R.layout.activity_agregar_cliente)
         initComponents()
 
-        agregarBtn.setOnClickListener{insertarCliente()}
+        agregarBtn.setOnClickListener { insertarCliente() }
     }
 
-    fun initComponents(){
+    fun initComponents() {
         nombre = findViewById(R.id.nombreTxt)
         cedula = findViewById(R.id.cedulaClienteTxt)
         salario = findViewById(R.id.salarioClienteTxt)
         telefono = findViewById(R.id.telefonoClienteTxt)
-        estadoCivil = findViewById(R.id.estadoCivilTxt)
+        estadoCivil = findViewById(R.id.estadoCivilSpinner)
         fechaNacimiento = findViewById(R.id.fechaNacimientoTxt)
         direccion = findViewById(R.id.direccionClienteTxt)
         rol = findViewById(R.id.rolSpinner)
         nombreUsuario = findViewById(R.id.userName)
         contrasena = findViewById(R.id.contrasenaClienteTxt)
 
-        val roles = arrayOf("Cliente","Administrador")
-        val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_item,roles)
+        val roles = arrayOf("Cliente", "Administrador")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, roles)
         rol.adapter = adapter
+
+        val estadosCiviles = arrayOf("Estado Civil","Soltero(a)", "Casado(a)", "Divorciado(a)", "Viudo(a)", "Unión Libre")
+        val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, estadosCiviles)
+        estadoCivil.adapter = adapter2
 
         agregarBtn = findViewById(R.id.insertarClienteBtn)
     }
 
     fun compruebaCampos(): Boolean {
+
+        var bandera = true
 
         val nomUsuarioText = nombreUsuario.text.toString()
         val contrasenaTxt = contrasena.text.toString()
@@ -65,51 +70,61 @@ class agregarCliente : AppCompatActivity() {
         val cedulaTxt = cedula.text.toString()
         val salarioText = salario.text.toString()
         val telefonoTxt = telefono.text.toString()
-        val estadoTxt = estadoCivil.text.toString()
         val fecNacText = fechaNacimiento.text.toString()
         val direecionTxt = direccion.text.toString()
 
-        if(nomUsuarioText.isEmpty()) {
-            nombreUsuario.setError("Ingrese un nombre de usuario válido")
-            return false
-        }else if(contrasenaTxt.isEmpty()){
-              contrasena.setError("Ingrese una contraseña válida")
-            return false
-        }else if(nombreTxt.isEmpty()){
-            nombre.setError("Ingrese un nombre válido")
-            return false
-        }else if(cedulaTxt.isEmpty()){
-            cedula.setError("Ingrese un número de cedula válido")
-            return false
-        }else if(salarioText.isEmpty()){
+        if (nomUsuarioText.isEmpty()) {
+            nombreUsuario.error = "Ingrese un nombre de usuario válido"
+            bandera = false
+        }
+        if (contrasenaTxt.isEmpty()) {
+            contrasena.error = "Ingrese una contraseña válida"
+            bandera = false
+        }
+        if (nombreTxt.isEmpty()) {
+            nombre.error = "Ingrese un nombre válido"
+            bandera = false
+        }
+        if (cedulaTxt.isEmpty()) {
+            cedula.error = "Ingrese un número de cedula válido"
+            bandera = false
+        }
+        if(estadoCivil.selectedItem.toString() == "Estado Civil"){
+            val mensaje:TextView = estadoCivil.selectedView as TextView
+            mensaje.error = ""
+            bandera = false
+        }
+        if (salarioText.isEmpty() || salarioText.toInt() <= 0) {
             salario.setError("Ingrese un salario mayor a 0")
-            return false
-        }else if(telefonoTxt.isEmpty()){
-            telefono.setError("Ingrese un número de teléfono válido")
-            return false
-        }else if(estadoTxt.isEmpty()){
-            estadoCivil.setError("Ingrese un estado civil")
-            return false
-        }else if(fecNacText.isEmpty()){
-            fechaNacimiento.setError("Ingrese una fecha de nacimiento válida")
-            return false
-        }else if(direecionTxt.isEmpty()){
-            direccion.setError("Ingrese una dirección válida")
-            return false
-        }else{
+            bandera = false
+        }
+        if (telefonoTxt.isEmpty()) {
+            telefono.error = "Ingrese un número de teléfono válido"
+            bandera = false
+        }
+        if (fecNacText.isEmpty()) {
+            fechaNacimiento.error = "Ingrese una fecha de nacimiento válida"
+            bandera = false
+        }
+        if (direecionTxt.isEmpty()) {
+            direccion.error = "Ingrese una dirección válida"
+            bandera = false
+        }
+        if (bandera) {
             return true
         }
+        return false
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
-    fun insertarCliente(){
+    fun insertarCliente() {
 
-        val admin = DataBase(this,"GestionPrestamos",null,1)
+        val admin = DataBase(this, "GestionPrestamos", null, 1)
         val db = admin.writableDatabase
 
-        if(compruebaCampos()
-        ){
-            client =  Client(
+        if (compruebaCampos()
+        ) {
+            client = Client(
                 nombreUsuario.text.toString(),
                 nombreUsuario.text.toString(),
                 rol.selectedItem.toString(),
@@ -118,13 +133,13 @@ class agregarCliente : AppCompatActivity() {
                 salario.text.toString().toDouble(),
                 telefono.text.toString(),
                 fechaNacimiento.text.toString(),
-                estadoCivil.text.toString(),
+                estadoCivil.selectedItem.toString(),
                 direccion.text.toString()
             )
 
             val registro = ContentValues()
             registro.put("userName", client.getUsername())
-            registro.put("password",  client.getPassword())
+            registro.put("password", client.getPassword())
             registro.put("role", client.getRole())
             registro.put("id", client.getCedula())
             registro.put("name", client.getName())
@@ -137,16 +152,16 @@ class agregarCliente : AppCompatActivity() {
             db.insert("usuarios", null, registro)
             // Insert de Ahorros para este cliente
             val registroAhorro = ContentValues()
-            registroAhorro.put("idUser",client.getCedula())
-            registroAhorro.put("typeSaving","Navideño")
-            registroAhorro.put("isActive",false)
-            registroAhorro.put("savingAmount",0.0)
+            registroAhorro.put("idUser", client.getCedula())
+            registroAhorro.put("typeSaving", "Navideño")
+            registroAhorro.put("isActive", false)
+            registroAhorro.put("savingAmount", 0.0)
             db.insert("ahorros", null, registroAhorro)
-            registroAhorro.put("typeSaving","Escolar")
+            registroAhorro.put("typeSaving", "Escolar")
             db.insert("ahorros", null, registroAhorro)
-            registroAhorro.put("typeSaving","Marchamo")
+            registroAhorro.put("typeSaving", "Marchamo")
             db.insert("ahorros", null, registroAhorro)
-            registroAhorro.put("typeSaving","Extraordinario")
+            registroAhorro.put("typeSaving", "Extraordinario")
             db.insert("ahorros", null, registroAhorro)
 
             db.close()
@@ -158,7 +173,6 @@ class agregarCliente : AppCompatActivity() {
             salario.setText("")
             telefono.setText("")
             fechaNacimiento.setText("")
-            estadoCivil.setText("")
             direccion.setText("")
             Toast.makeText(this, "!Usuario ingresado con éxito!", Toast.LENGTH_SHORT).show()
         }

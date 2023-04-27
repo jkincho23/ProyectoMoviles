@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.Button
 
 class ClientePrincipal : AppCompatActivity() {
-    lateinit var view_loan: Button
-    lateinit var view_saving: Button
-    var id_user : Int = 0
+    lateinit var viewLoan: Button
+    lateinit var viewSaving: Button
+    var idUser : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cliente_principal)
@@ -16,25 +16,25 @@ class ClientePrincipal : AppCompatActivity() {
 
 
         initCompontent()
-        println("Username :  $id_user")
-        view_loan.setOnClickListener{openVerPrestamos()}
-        view_saving.setOnClickListener{openVerAhorros()}
+        println("Username :  $idUser")
+        viewLoan.setOnClickListener{openVerPrestamos()}
+        viewSaving.setOnClickListener{openVerAhorros()}
     }
 
     fun initCompontent(){
-        view_loan =findViewById(R.id.gestionarPrestamosBtn)
-        view_saving =findViewById(R.id.gestionarAhorrosBtn)
-        id_user = intent.getIntExtra("USER_ID",0)
+        viewLoan =findViewById(R.id.gestionarPrestamosBtn)
+        viewSaving =findViewById(R.id.gestionarAhorrosBtn)
+        idUser = intent.getIntExtra("USER_ID",0)
     }
 
     fun openVerPrestamos(){
         val intent = Intent(this, ver_prestamos::class.java)
-        intent.putExtra("USER_ID", id_user)
+        intent.putExtra("USER_ID", idUser)
         startActivity(intent)
     }
     fun openVerAhorros(){
         val intent = Intent(this, ver_ahorros::class.java)
-        intent.putExtra("USER_ID", id_user)
+        intent.putExtra("USER_ID", idUser)
         startActivity(intent)
     }
 

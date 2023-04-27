@@ -22,7 +22,7 @@ class editar_ahorro : AppCompatActivity() {
 
         saving = intent.getSerializableExtra("saving") as Saving
         initComponent()
-        cargarInfo();
+        cargarInfo()
         guardar.setOnClickListener { guardar() }
 
     }
@@ -64,24 +64,24 @@ class editar_ahorro : AppCompatActivity() {
         cantidadNueva = findViewById(R.id.editTextNumerico)
 
 
-        if (!cantidadNueva.text.toString().isEmpty()) {
+        if (cantidadNueva.text.toString().isNotEmpty()) {
             val cantidadNuevaNum = cantidadNueva.text.toString().toInt()
             if(cantidadNuevaNum >= 5000){
-                if(switchButton.isChecked == true){
+                if(switchButton.isChecked){
                     Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show()
                     // Update de Base
                     // Render la parte de arriba
                     // OnResumen para la vista anterior
                 }
                 else{
-                    switchButton.setError("Debes activar el Switch")
+                    switchButton.error = "Debes activar el Switch"
                 }
             }
             else{
-                cantidadNueva.setError("El ahorro tiene que ser mayor a 5000")
+                cantidadNueva.error = "El ahorro tiene que ser mayor a 5000"
             }
         } else {
-            cantidadNueva.setError("Debe ingresar un número")
+            cantidadNueva.error = "Debe ingresar un número"
         }
 
 

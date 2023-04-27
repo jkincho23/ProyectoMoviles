@@ -84,7 +84,7 @@
 
         <Switch
             android:id="@+id/switch_button"
-            android:layout_width="100dp"
+            android:layout_width="145dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"

@@ -42,5 +42,10 @@
     <string name="datos_nuevos">Datos Nuevos</string>
     <string name="no">No</string>
     <string name="si">Sí</string>
+    <string name="agregar_prestamo">Agregar prestamo</string>
+    <string name="seleccione_un_per_odo_de_tiempo">Seleccione un período de tiempo</string>
+    <string name="credito">creditoTXT</string>
+    <string name="seleccione_el_tipo">Seleccione el tipo</string>
+    <string name="hint_creditoTxt">Inserte Monto a Solicitar</string>
 
 </resources>

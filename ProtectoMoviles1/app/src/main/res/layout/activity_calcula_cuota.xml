@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".calcula_Cuota">
+
+    <TextView
+        android:id="@+id/infoPrestamoView"
+        android:layout_width="235dp"
+        android:layout_height="33dp"
+        android:text="@string/info_prestamo"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057"
+        tools:ignore="TextSizeCheck,TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/interesView"
+        android:layout_width="114dp"
+        android:layout_height="39dp"
+        android:text="@string/interesView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637" />
+
+    <TextView
+        android:id="@+id/infoCuota"
+        android:layout_width="152dp"
+        android:layout_height="31dp"
+        android:text="@string/info_cuota"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.364"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/interesTxt"
+        android:layout_width="96dp"
+        android:layout_height="34dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.632" />
+
+    <TextView
+        android:id="@+id/periodoFinalText"
+        android:layout_width="150dp"
+        android:layout_height="39dp"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="409dp"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.337"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/mensualidadView"
+        android:layout_width="114dp"
+        android:layout_height="39dp"
+        android:text="@string/mensualidadView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/tipoFinalView2"
+        android:layout_width="114dp"
+        android:layout_height="39dp"
+        android:text="@string/tipoFinalView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57" />
+
+    <TextView
+        android:id="@+id/tipoFinalText"
+        android:layout_width="107dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57" />
+
+    <TextView
+        android:id="@+id/mensualidadText"
+        android:layout_width="150dp"
+        android:layout_height="39dp"
+        android:text=""
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <TextView
+        android:id="@+id/periodoFinalView"
+        android:layout_width="114dp"
+        android:layout_height="39dp"
+        android:text="@string/periodoFinalView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
+
+
+    <Spinner
+        android:id="@+id/spinnerPeriodo"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/seleccione_un_per_odo_de_tiempo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.197" />
+
+    <Spinner
+        android:id="@+id/spinnerTipo"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/seleccione_el_tipo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.277" />
+
+    <Button
+        android:id="@+id/procesarBtn"
+        android:layout_width="103dp"
+        android:layout_height="83dp"
+        android:text="@string/procesar_btn"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.951"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.217" />
+
+    <EditText
+        android:id="@+id/creditoTxt"
+        android:layout_width="229dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint_creditoTxt"
+        android:inputType="number"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.12"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/tipoView"
+        android:layout_width="81dp"
+        android:layout_height="40dp"
+        android:text="@string/tipoView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.283" />
+
+    <TextView
+        android:id="@+id/CreditoView"
+        android:layout_width="81dp"
+        android:layout_height="40dp"
+        android:text="@string/creditoView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/periodoView"
+        android:layout_width="81dp"
+        android:layout_height="40dp"
+        android:text="@string/periodoView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.204"
+        tools:ignore="TextSizeCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

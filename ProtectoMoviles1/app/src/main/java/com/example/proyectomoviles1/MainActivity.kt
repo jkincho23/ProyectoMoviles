@@ -137,12 +137,28 @@ class MainActivity : AppCompatActivity() {
             "Soltero(a)", "Barreal de Heredia 100 mts pul veranera")
 
         val cliente5 = Client("elias","elias","Cliente",
-            "Elias Arias Muñoz",504330612, 800000.0, "732532785", "28/10/1997",
+            "Elias Arias Muñoz",504330612, 800000.0, "732532785", "28/08/1982",
             "Soltero(a)", "100 mts pali aurora")
 
         val cliente6 = Client("maria","maria","Cliente",
-            "Maria Brenes Sequeira",112233445, 950000.0, "632532785", "28/10/1997",
+            "Maria Brenes Sequeira",112233445, 950000.0, "632532785", "21/10/1991",
             "Casado(a)", "100 mts este Wallmart Ulloa")
+
+        val cliente7 = Client("mateo","mateo","Cliente",
+            "Mateo Vargas Lopez",165486848, 900000.0, "32532785", "21/10/1980",
+            "Soltero(a)", "25 mts este pulperia San Cristobal")
+
+        val cliente8 = Client("katty","katty","Cliente",
+            "Katyy Morales Soto",536601548, 1000000.0, "654532785", "28/02/1991",
+            "Viudo(a)", "100 mts norte Ferret Fortaleza")
+
+        val cliente9 = Client("joaquin","joaquin","Cliente",
+            "Joaquin Garcia Lopez",610245458, 1200000.0, "343532785", "21/10/1992",
+            "Viudo(a)", "100 mts sur Pali")
+
+        val cliente10 = Client("lucas","lucas","Cliente",
+            "Lucas Albornoz Chavez",312546587, 1300000.0, "824532785", "28/10/1991",
+            "Viudo(a)", "100 mts norte Repuestos Gigante")
 
         insertarCliente(cliente1)
         insertarCliente(cliente2)
@@ -150,5 +166,9 @@ class MainActivity : AppCompatActivity() {
         insertarCliente(cliente4)
         insertarCliente(cliente5)
         insertarCliente(cliente6)
+        insertarCliente(cliente7)
+        insertarCliente(cliente8)
+        insertarCliente(cliente9)
+        insertarCliente(cliente10)
     }
 }

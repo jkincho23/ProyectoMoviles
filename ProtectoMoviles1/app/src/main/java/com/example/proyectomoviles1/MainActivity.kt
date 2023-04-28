@@ -122,12 +122,33 @@ class MainActivity : AppCompatActivity() {
     fun cargarDatos() {
         val cliente1 = Client("andres","andres","Cliente",
             "Andres Martinez Araya",208270803, 1500000.0, "632548785", "28/05/1997",
-            "Soltero", "Barreal de Heredia 100 mts pul veranera")
+            "Soltero", "Snta Cecilia, contiguo al AMPM")
+
         val cliente2 = Client("marcos","marcos","Administrador",
-            "Marcos Lopez Araya",123456789, 1800000.0, "632548785", "28/10/1997",
-            "Soltero", "Barreal de Heredia 100 mts pul veranera")
+            "Marcos Lopez Araya",111111111, 1800000.0, "582548785", "28/10/1997",
+            "Soltero(a)", "Jardines 2, 50 mts este Hotel de paso")
+
+        val cliente3 = Client("luis","luis","Cliente",
+            "Luis Soto Vega",123456789, 2000000.0, "632548785", "28/10/1997",
+            "Soltero(a)", "Belen, por el mas x menos")
+
+        val cliente4 = Client("julian","julian","Administrador",
+            "Julian Gutierrez Alvarez",987654321, 1250000.0, "56584715", "28/10/1997",
+            "Soltero(a)", "Barreal de Heredia 100 mts pul veranera")
+
+        val cliente5 = Client("elias","elias","Cliente",
+            "Elias Arias Muñoz",504330612, 800000.0, "732532785", "28/10/1997",
+            "Soltero(a)", "100 mts pali aurora")
+
+        val cliente6 = Client("maria","maria","Cliente",
+            "Maria Brenes Sequeira",112233445, 950000.0, "632532785", "28/10/1997",
+            "Casado(a)", "100 mts este Wallmart Ulloa")
 
         insertarCliente(cliente1)
         insertarCliente(cliente2)
+        insertarCliente(cliente3)
+        insertarCliente(cliente4)
+        insertarCliente(cliente5)
+        insertarCliente(cliente6)
     }
 }

@@ -28,7 +28,10 @@ class agregarCliente : AppCompatActivity() {
     // boton de ingresar nuevo usuario
     lateinit var agregarBtn: Button
 
+
     val PATRON_FECHA = Regex("""\d{2}/\d{2}/\d{4}""")
+    val PATRON_NOMBRE = Regex("[a-z A-Z]+")
+
 
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,7 +87,7 @@ class agregarCliente : AppCompatActivity() {
             contrasena.error = "Ingrese una contraseña válida"
             bandera = false
         }
-        if (nombreTxt.isEmpty()) {
+        if (nombreTxt.isEmpty() || !nombreTxt.matches(PATRON_NOMBRE)) {
             nombre.error = "Ingrese un nombre válido"
             bandera = false
         }

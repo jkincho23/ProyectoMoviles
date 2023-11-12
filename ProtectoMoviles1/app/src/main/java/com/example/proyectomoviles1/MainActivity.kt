@@ -163,6 +163,21 @@ class MainActivity : AppCompatActivity() {
         agregarAhorro(cliente10)
 
         insertarCliente(cliente1)
+
+        val admin = DataBase(this, "GestionPrestamos", null, 1)
+        val db = admin.writableDatabase
+        val registro = ContentValues()
+        registro.put("id", 1)
+        registro.put("credit", 100000)
+        registro.put("periodo", 10)
+        registro.put("tipoCredito", "Hipotecario")
+        registro.put("idUser", 312546587)
+        registro.put("cantPagos", 0)
+
+
+        db.insert("prestamos", null, registro)
+        db.close()
+
         insertarCliente(cliente2)
         insertarCliente(cliente3)
         insertarCliente(cliente4)

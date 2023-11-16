@@ -11,27 +11,4 @@ fun main() {
     val maxLoan = client.maxLoanAmount()
     println(maxLoan)
     val loan = Loan(23,client.getUsername(), 1000.0, 5, "Viajes",0)
-
-    println("---------------------------")
-    println("---------------------------")
-    println("---------------------------")
-    println("---------------------------")
-    println("---------------------------")
-    println("---------------------------")
-
-//    val saving = Saving("usuario1", "Navideño")
-    println("---------------------------")
-    //saving.activateSaving(5000.0)
-    //println(saving.toString())
-    println("---------------------------")
-    //saving.deactivateSaving()
-    //println(saving.toString())
-
-//    val users = arrayOf(usuario1,client)
-//
-//    for (user in users) {
-//        println(user.toString())
-//    }
-
-
 }

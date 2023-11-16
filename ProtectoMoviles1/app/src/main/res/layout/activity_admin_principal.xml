@@ -19,6 +19,19 @@
         app:layout_constraintVertical_bias="0.213" />
 
     <Button
+        android:id="@+id/eliminarClienteBtn"
+        android:layout_width="314dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#C33E3E"
+        android:text="@string/eliminar_cliente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
+    <Button
         android:id="@+id/agregarClienteBtn"
         android:layout_width="314dp"
         android:layout_height="60dp"

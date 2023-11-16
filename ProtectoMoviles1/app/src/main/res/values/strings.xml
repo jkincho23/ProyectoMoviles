@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProyectoMoviles1</string>
+    <string name="app_name">MiAsoApp</string>
     <string name="contrasena">Contraseña</string>
     <string name="usuario">Usuario</string>
     <string name="ingresar">ingresar</string>
@@ -13,6 +13,7 @@
     <string name="direccionClienteTxt">Direccion</string>
     <string name="salarioClienteTxt">Salario</string>
     <string name="addClienteTxtView">Agregar Cliente</string>
+    <string name="eliminar_cliente">Eliminar Cliente</string>
     <string name="telefonoClienteTxt">Teléfono</string>
     <string name="nombreClienteTxt">Nombre</string>
     <string name="cedulaClienteTxt">Cedula</string>

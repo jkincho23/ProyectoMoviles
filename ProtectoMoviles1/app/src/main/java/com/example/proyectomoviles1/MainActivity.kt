@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -92,7 +93,6 @@ class MainActivity : AppCompatActivity() {
 
             db.insert("usuarios", null, registro)
             db.close()
-            Toast.makeText(this, "Datos guardados!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -208,9 +208,6 @@ class MainActivity : AppCompatActivity() {
         registroAhorro.put("typeSaving", "Extraordinario")
         db.insert("ahorros", null, registroAhorro)
         db.close()
-
-        Toast.makeText(this, "Datos guardados!", Toast.LENGTH_SHORT).show()
-
     }
 
 
